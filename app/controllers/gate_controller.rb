@@ -7,25 +7,27 @@ class GateController < ApplicationController
 
   def login
     if request.get?
-      flash.now[:notice] = "Please login first."
+      flash.now[:info] = "Please login first."
       reset_current_user
 
     elsif user = User.authenticate(params[:ident], params[:password])
-      flash[:notice] = "User #{user.ident} logged in."
+      flash[:info] = "User #{user.ident} logged in."
       set_current_user(user)
 
       reset_session_expires
       redirect_to(session[:jumpto])
 
     else
-      flash.now[:error] = "Invalid user/passwd."
+      flash.now[:danger] = "Invalid user/passwd."
       reset_current_user
     end
   end
 
   def logout
+    user = User.current
     reset_current_user
     reset_session
+    flash[:info] = "User #{user.ident} logged out."
     redirect_to "/"
   end
 end

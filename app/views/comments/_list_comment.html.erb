@@ -1,6 +1,5 @@
 <% article = @article %>
 <% if @article.comments.length > 0 %>
-<p id="notice"><%= notice %></p>
 <% @article.comments.each do |comment| %>
 <div id="comment">
   <%= comment.user.ident %> :
