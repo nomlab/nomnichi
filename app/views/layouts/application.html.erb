@@ -46,6 +46,13 @@
               <%= link_to "ノムニチ", :controller => "articles", :action => "index" %>
             </li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <% unless User.current.nil? %>
+                <%= link_to User.current.ident, :controller => "gate", :action => "logout" %>
+              <% end %>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
