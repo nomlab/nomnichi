@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
+
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :count_up, only: [:show] 
 
   # GET /articles
   # GET /articles.json
@@ -70,5 +72,11 @@ class ArticlesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:user_id, :title, :perma_link, :content, :published_on, :approved, :count, :promote_headline)
+    end
+
+    #count up the number of view
+    def count_up
+      @article.count = @article.count + 1
+      @article.save
     end
 end
