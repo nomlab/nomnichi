@@ -1,9 +1,9 @@
 module ArticlesHelper
   def fold_article(content)
     if /<!-- folding -->/ =~ content then
-      $`
+      Sanitize.clean($`)
     else
-      content.split(/\r?\n/)[0, 3].join
+      Sanitize.clean(content.split(/\r?\n/)[0, 3].join)
     end
   end
 
