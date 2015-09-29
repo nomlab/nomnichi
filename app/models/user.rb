@@ -13,14 +13,9 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(ident, password)
-   if password.blank?
-      return where(["ident=? AND (password=? OR password IS NULL)",
-                   ident, password]).first
-    else
-      salt = find_by("ident = ?", ident).salt
-      pass_sha = Digest::SHA1.hexdigest(salt + password)
-      return where(["ident=? AND password=?",
-                   ident, pass_sha]).first
-    end
+    user = find_by("ident = ?", ident)
+    return false if user.nil?
+    pass_sha = Digest::SHA1.hexdigest(user.salt + password)
+    return where(["ident=? AND password=?", ident, pass_sha]).first
   end
 end
