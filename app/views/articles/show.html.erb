@@ -1,36 +1,39 @@
 <% provide(:title, @article.title) %>
 
-<article>
-  <h1 class="title">
-    <%= @article.title %>
-  </h1>
+<p id="notice"><%= notice %></p>
 
-  <div class="article_information">
-    <div class="published_on">
-      <%= @article.published_on %>
-    </div>
+<div class="row">
+ <div class="box col-md-8">
+   <div class="title">
+     <%= @article.title %>
+   </div>
+   
+   <div class="article-created-at">
+     <span class="glyphicon glyphicon-eye-open"></span>
+     <%= @article.count %>
+     <span class="glyphicon glyphicon-user"></span>
+     <%= @article.user.ident %>
+     <span class="glyphicon glyphicon-time"></span>
+     <%= @article.created_at  %>
+   </div>
 
-    <div class="author">
-      <%= @article.user.ident %>
-    </div>
+   <div class="clear">
+   </div>
 
-    <div class="count">
-      <%= @article.count %>
-    </div>
+   <div class="content">
+     <%= raw Kramdown::Document.new(@article.content).to_html %>
+   </div>
+ </div>
+
+<div class="box col-md-8">
+  <div class="title">
+    Comment
   </div>
-
-  <div class="content">
-    <%= raw Kramdown::Document.new(@article.content).to_html %>
-  </div>
-</article>
-
-<hr>
-
-<p>
-  <strong>Comment:</strong>
+  <hr>
   <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %>
   <%= render :partial => '/comments/form',:locals => {:article => @article} unless User.current.nil?%>
-</p>
+</div>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
+</div> 

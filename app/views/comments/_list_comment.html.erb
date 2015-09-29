@@ -2,12 +2,22 @@
 <% if @article.comments.length > 0 %>
 <% @article.comments.each do |comment| %>
 <div id="comment">
-  <%= comment.user.ident %> :
-  <br>
+  <div>
   <%= comment.body %>
-  <div class="published_on"> <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+  </div>
+  <div class="clear">
+  </div>
+  <div class="article-created-at">
+    <span class="glyphicon glyphicon-user"></span>
+    <%= comment.user.ident %>
+    <span class="glyphicon glyphicon-time"></span>
+    <%= comment.created_at %>
   <%= link_to '編集', edit_comment_path(comment) unless User.current.nil? %>
   <%= link_to '削除', comment_path(comment), method: 'DELETE' unless User.current.nil? %>
+  </div>
+  <div class="clear">
+  </div>
+  <hr>
 </div>
 <% end %>
 <% else %>

@@ -1,13 +1,13 @@
 <div class="row">
   <% @articles.each do |article| %>
   <div class="box col-md-8">
-    <div class="article-list-title">
+    <div class="title">
       <%= link_to "#{article.title}", article %>
     </div>
     <div class="article-created-at">
       <%= article.user.ident %>
       <span class="glyphicon glyphicon-time"></span>
-      <%= article.created_at  %>
+      <%= article.created_at %>
     </div>
     <hr>
     <%= raw fold_article(article.content) %>

@@ -18,7 +18,7 @@
   line-height: 1.5em;
 }
 
-.article-list-title {
+.title {
     border-color: gray;
     width: 100%;
     border-width: 0px 0px 1px 10px;
@@ -26,4 +26,9 @@
     margin: 0px 0px 5px 0px;
     border-style: solid;
     float: left;
+    font-size: 1.5em;
+
+}
+.clear {
+    clear: both;
 }
