@@ -1,10 +1,15 @@
+<% article = @article %>
+<% if @article.comments.length > 0 %>
 <p id="notice"><%= notice %></p>
-<% @comments.each do |comment| %>
+<% @article.comments.each do |comment| %>
 <div id="comment">
-  <%= comment.user_id %> :
+  <%= comment.user.ident %> :
   <br>
   <%= comment.body %>
   <div class="published_on"> <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></div>
 </div>
+<% end %>
+<% else %>
+<div>No comment</div>
 <% end %>
 <br>
