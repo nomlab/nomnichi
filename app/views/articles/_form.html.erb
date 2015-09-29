@@ -32,10 +32,9 @@
     <%= f.label :approved %><br>
     <%= f.check_box :approved %>
   </div>
-  <div class="field">
-    <%= f.label :count %><br>
-    <%= f.number_field :count %>
-  </div>
+
+  <%= f.hidden_field :count %>
+
   <div class="field">
     <%= f.label :promote_headline %><br>
     <%= f.check_box :promote_headline %>
