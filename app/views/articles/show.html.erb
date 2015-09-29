@@ -30,9 +30,9 @@
 
 <p>
   <strong>Comment:</strong>
-  <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %></td>
+  <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %>
+  <%= render :partial => '/comments/form',:locals => {:article => @article} unless User.current.nil?%>
 </p>
-<%= render :partial => '/comments/form',:locals => {:article => @article} %></td>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

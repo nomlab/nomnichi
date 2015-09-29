@@ -10,10 +10,9 @@
       </ul>
     </div>
   <% end %>
-
+<div class="comment">
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.hidden_field :user_id, value: User.current.id %><br>
   </div>
   <div class="field">
     <%= f.label :body %><br>
@@ -25,4 +24,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>
 <% end %>
