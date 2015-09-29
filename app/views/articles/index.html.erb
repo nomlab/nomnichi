@@ -2,40 +2,9 @@
 
 <h1>Listing Articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Perma link</th>
-      <th>Content</th>
-      <th>Published on</th>
-      <th>Approved</th>
-      <th>Count</th>
-      <th>Promote headline</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.user_id %></td>
-        <td><%= article.title %></td>
-        <td><%= article.perma_link %></td>
-        <td><%= article.content %></td>
-        <td><%= article.published_on %></td>
-        <td><%= article.approved %></td>
-        <td><%= article.count %></td>
-        <td><%= article.promote_headline %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% @articles.each do |article| %>
+  <%= link_to "#{article.title}", article %><br>
+<% end %>
 <br>
 
 <%= link_to 'New Article', new_article_path %>
