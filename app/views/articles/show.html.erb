@@ -1,44 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @article.user_id %>
-</p>
+<article>
+  <h1 class="title">
+    <%= @article.title %>
+  </h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+  <div class="article_information">
+    <div class="published_on">
+      <%= @article.published_on %>
+    </div>
 
-<p>
-  <strong>Perma link:</strong>
-  <%= @article.perma_link %>
-</p>
+    <div class="author">
+      <%= @article.user.ident %>
+    </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @article.content %>
-</p>
+    <div class="count">
+      <%= @article.count %>
+    </div>
+  </div>
 
-<p>
-  <strong>Published on:</strong>
-  <%= @article.published_on %>
-</p>
+  <div class="content">
+    <%= raw Kramdown::Document.new(@article.content).to_html %>
+  </div>
+</article>
 
-<p>
-  <strong>Approved:</strong>
-  <%= @article.approved %>
-</p>
-
-<p>
-  <strong>Count:</strong>
-  <%= @article.count %>
-</p>
-
-<p>
-  <strong>Promote headline:</strong>
-  <%= @article.promote_headline %>
-</p>
+<hr>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
