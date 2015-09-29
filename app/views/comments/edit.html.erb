@@ -1,6 +1,31 @@
 <h1>Editing Comment</h1>
+<%= form_for(@comment) do |f| %>
+<% if @comment.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="comment">
+  <div class="field">
+    <%= f.hidden_field :user_id, value: @comment.user_id %><br>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :article_id, value: @comment.article.id %><br>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+</div>
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<!-- <%= link_to 'Show', @comment %> | -->
+<%= link_to 'Back', articles_path %>
