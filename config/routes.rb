@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'articles/preview', to: 'articles#preview'
+  get 'welcome/index'
+
   resources :articles
   resources :comments
   resources :articles
@@ -58,4 +60,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  root :to => "welcome#index"
 end
