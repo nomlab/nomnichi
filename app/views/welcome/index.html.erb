@@ -1,3 +1,6 @@
 <h1>Welcome#index</h1>
-ようこそ
+ようこそ<br>
+<% @headline.each do |article| %>
+  <%= link_to "#{article.title}", article %><br>
+<% end %>
 <p>Find me in app/views/welcome/index.html.erb</p>
