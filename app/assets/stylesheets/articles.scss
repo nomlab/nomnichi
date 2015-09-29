@@ -1,3 +1,29 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.article-author{
+  text-align: right;
+}
+
+.article-created-at{
+  float: right;
+}
+
+.box{
+  padding: 1em;
+  border: solid 2px silver;
+  border-radius: 5px;
+  margin: 0em 1em 1em 0em;
+  line-height: 1.5em;
+}
+
+.article-list-title {
+    border-color: gray;
+    width: 100%;
+    border-width: 0px 0px 1px 10px;
+    padding: 0 0 0 10px;
+    margin: 0px 0px 5px 0px;
+    border-style: solid;
+    float: left;
+}

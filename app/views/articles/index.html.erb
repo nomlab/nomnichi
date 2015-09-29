@@ -1,10 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Articles</h1>
-
-<% @articles.each do |article| %>
-  <%= link_to "#{article.title}", article %><br>
-<% end %>
-<br>
-
+<div class="row">
+  <% @articles.each do |article| %>
+  <div class="box col-md-8">
+    <div class="article-list-title">
+      <%= link_to "#{article.title}", article %>
+    </div>
+    <div class="article-created-at">
+      <%= article.user.ident %>
+      <span class="glyphicon glyphicon-time"></span>
+      <%= article.created_at  %>
+    </div>
+    <hr>
+    <%= raw fold_article(article.content) %>
+    <hr>
+  </div>
+  <% end %>
+</div>
 <%= link_to 'New Article', new_article_path %>
