@@ -11,18 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+  <%= f.hidden_field :user_id, value: User.current.id if User.current %>
+
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :perma_link %><br>
-    <%= f.text_field :perma_link %>
-  </div>
+
+  <%= f.hidden_field :perma_link, value: User.current.ident + "-" + Time.now.to_s(:perma_link) if User.current %>
+
   <div class="field">
     <%= f.label :content %><br>
     <%= f.text_area :content %>
