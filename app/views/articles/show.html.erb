@@ -4,10 +4,12 @@
 
 <div class="row">
  <div class="box col-md-8">
-   <div class="title">
-     <%= @article.title %>
+   <div class="title-bar">
+     <span class="title">
+       <%= @article.title %>
+     </span>
    </div>
-   
+
    <div class="article-created-at">
      <span class="glyphicon glyphicon-eye-open"></span>
      <%= @article.count %>
@@ -26,8 +28,10 @@
  </div>
 
 <div class="box col-md-8">
-  <div class="title">
+  <div class="title-bar">
+    <span class="title">
     Comment
+    </span>
   </div>
   <hr>
   <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %>
@@ -36,4 +40,4 @@
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
-</div> 
+</div>

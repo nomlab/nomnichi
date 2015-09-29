@@ -18,7 +18,7 @@
   line-height: 1.5em;
 }
 
-.title {
+.title-bar {
     border-color: gray;
     width: 100%;
     border-width: 0px 0px 1px 10px;
@@ -26,9 +26,14 @@
     margin: 0px 0px 5px 0px;
     border-style: solid;
     float: left;
-    font-size: 1.5em;
-
 }
+
+.title {
+   font-size: 150%;
+   color: gray;
+   font-weight: bold;
+}
+
 .clear {
     clear: both;
 }

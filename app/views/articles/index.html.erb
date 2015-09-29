@@ -1,16 +1,19 @@
 <div class="row">
   <% @articles.each do |article| %>
   <div class="box col-md-8">
-    <div class="title">
-      <%= link_to "#{article.title}", article %>
+    <div class="title-bar">
+      <%= link_to "#{article.title}", article, { :class => "title"} %>
     </div>
     <div class="article-created-at">
       <%= article.user.ident %>
       <span class="glyphicon glyphicon-time"></span>
       <%= article.created_at %>
     </div>
-    <hr>
+    <div class="clear">
+    </div>
+    <div>
     <%= raw fold_article(article.content) %>
+    </div>
     <hr>
   </div>
   <% end %>
