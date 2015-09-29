@@ -63,6 +63,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def preview
+    render text: Kramdown::Document.new(article_params[:content]).to_html
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article

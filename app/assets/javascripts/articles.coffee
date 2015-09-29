@@ -1,3 +1,22 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+setupRenderPreviewButton = (selector) ->
+  $(selector).on 'click', (e) ->
+    previewArea = $(".preview_area")
+    title = $('#article_title').val()
+    content = $('#article_content').val()
+    $. ajax
+      async:     true
+      type:      "GET"
+      url:       "/articles/preview"
+      dataType:  "html"
+      data:
+        article:
+          content: content
+      success: (html, status, xhr) ->
+        previewArea.empty()
+        previewArea.append(html)
+
+ready = ->
+  setupRenderPreviewButton('#preview')
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

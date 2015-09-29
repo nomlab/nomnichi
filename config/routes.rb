@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'articles/preview', to: 'articles#preview'
   resources :articles
   resources :comments
   resources :articles
