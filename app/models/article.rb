@@ -5,4 +5,6 @@ class Article < ActiveRecord::Base
   validates :user_id, presence: true
   validates :title, presence: true
   validates :perma_link, presence: true, uniqueness: true
+
+  paginates_per 10
 end

@@ -7,9 +7,9 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     if User.current
-      articles = Article.all
+      articles = Article.all.page(params[:page])
     else
-      articles = Article.where("approved = ?", true)
+      articles = Article.where("approved = ?", true).page(params[:page])
     end
     @articles = articles.order("created_at desc")
   end

@@ -48,3 +48,4 @@ end
 gem 'bootstrap-sass'
 gem 'kramdown'
 gem 'sanitize'
+gem 'kaminari'
