@@ -1,0 +1,25 @@
+* Install したあとにすること
+** 1. gem をインストール
+#+BEGIN_SRC sh
+$ bundle install --path vendor/bundle
+#+END_SRC
+** 2. secret key の設定
+#+BEGIN_SRC sh
+$ bundle exec rake secret
+#+END_SRC
+上記のコマンドで生成した鍵を， config/secrets-example.yml 内の <SECRETKEY> と置換える．
+置換えたら，以下のコマンドで config/secrets-example.yml を config/secrets.yml に変更．
+#+BEGIN_SRC sh
+$ mv config/secrets-example.yml config/secrets.yml
+#+END_SRC
+** 3. 初期設定
+#+BEGIN_SRC sh
+$ bundle exec rake db:migrate
+#+END_SRC
+
+* 利用方法
+** 1. Rails server の立ち上げ
+#+BEGIN_SRC sh
+$ bundle exec rails s
+#+END_SRC
+上記操作後，ウェブブラウザから http://ホスト名:3000/ にアクセス
