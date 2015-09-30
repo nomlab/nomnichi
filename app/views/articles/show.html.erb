@@ -9,14 +9,15 @@
        <%= @article.title %>
      </span>
    </div>
-
-   <div class="article-created-at">
+   <div class="article-info">
      <span class="glyphicon glyphicon-eye-open"></span>
      <%= @article.count %>
      <span class="glyphicon glyphicon-user"></span>
      <%= @article.user.ident %>
      <span class="glyphicon glyphicon-time"></span>
      <%= @article.created_at  %>
+     <span class="glyphicon glyphicon-comment"></span>
+     コメント(<%= @article.comments.length %>)
    </div>
 
    <div class="clear">
