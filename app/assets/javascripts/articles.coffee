@@ -5,7 +5,7 @@ setupRenderPreviewButton = (selector) ->
     content = $('#article_content').val()
     $. ajax
       async:     true
-      type:      "GET"
+      type:      "POST"
       url:       "/articles/preview"
       dataType:  "html"
       data:
