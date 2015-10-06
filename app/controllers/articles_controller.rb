@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :authenticate, except: [:index, :show]
   before_action :set_article, only: [:edit, :update, :destroy]
   before_action :set_article_by_perma_link, only: [:show]
+  before_action :count_up, only: [:show]
 
   # GET /articles
   # GET /articles.json
@@ -13,7 +14,7 @@ class ArticlesController < ApplicationController
     end
     @articles = articles.order("created_at desc")
   end
-    
+
   # GET /articles/1
   # GET /articles/1.json
   def show
@@ -74,23 +75,23 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    def set_article_by_perma_link
-      @article = Article.find_by(perma_link: params[:perma_link])
-    end
+  def set_article_by_perma_link
+    @article = Article.find_by(perma_link: params[:perma_link])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:user_id, :title, :perma_link, :content, :published_on, :approved, :count, :promote_headline)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def article_params
+    params.require(:article).permit(:user_id, :title, :perma_link, :content, :published_on, :approved, :count, :promote_headline)
+  end
 
-    #count up the number of view
-    def count_up
-      @article.count = @article.count + 1
-      @article.save
-    end
+  #count up the number of view
+  def count_up
+    @article.count = @article.count + 1
+    @article.save
+  end
 end
