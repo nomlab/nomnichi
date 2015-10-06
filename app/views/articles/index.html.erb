@@ -3,7 +3,7 @@
   <% @articles.each do |article| %>
   <div class="box col-md-8">
     <div class="title-bar">
-      <%= link_to "#{article.title}", article, { :class => "title"} %>
+      <%= link_to_article_by_perma_link(article, {class: "title"}) %>
     </div>
     <div class="article-info">
      <span class="glyphicon glyphicon-eye-open"></span>

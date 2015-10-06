@@ -10,4 +10,8 @@ module ArticlesHelper
   def list_headline(nth)
     Article.where(promote_headline: true).order("published_on desc").slice(0..nth)
   end
+
+  def link_to_article_by_perma_link(article, option = {})
+    link_to "#{article.title}", {controller: :articles, action: :show, perma_link: article.perma_link}, option
+  end
 end

@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate, except: [:index, :show]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :count_up, only: [:show] 
+  before_action :set_article, only: [:edit, :update, :destroy]
+  before_action :set_article_by_perma_link, only: [:show]
 
   # GET /articles
   # GET /articles.json
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to action: :show, perma_link: @article.perma_link, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to action: :show, perma_link: @article.perma_link, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -77,6 +77,10 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def set_article_by_perma_link
+      @article = Article.find_by(perma_link: params[:perma_link])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

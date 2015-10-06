@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get 'articles/preview', to: 'articles#preview'
   get 'welcome/index'
 
-  resources :articles
+  resources :articles, except: :show
+  get 'articles/:perma_link', to: 'articles#show'
   resources :comments
   resources :articles
   resources :users
