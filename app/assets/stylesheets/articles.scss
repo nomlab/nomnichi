@@ -18,6 +18,28 @@
   line-height: 1.5em;
 }
 
+.border, .side-title{
+  margin: 0px 0px 5px 0px;
+}
+
+.side_bar{
+  padding: 1em;
+  border: solid 2px silver;
+  border-radius: 5px;
+  line-height: 1.5em;
+}
+
+.comment-body, .comment-article-title{
+  margin: 0px 0px 0px 0px;
+  font-size: 0.7em;
+}
+
+.comment-name{
+  margin: 0px 0px 0px 0px;
+  text-align: right;
+  font-size: 0.6em;
+}
+
 .title-bar {
     border-color: gray;
     width: 100%;

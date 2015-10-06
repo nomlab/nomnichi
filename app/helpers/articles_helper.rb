@@ -14,4 +14,12 @@ module ArticlesHelper
   def link_to_article_by_perma_link(article, option = {})
     link_to "#{article.title}", {controller: :articles, action: :show, perma_link: article.perma_link}, option
   end
+
+  def fold_comment(body)
+    if body.length >= 14
+      return body.slice(0..14) + "..."
+    else
+      return body
+    end
+  end
 end

@@ -1,27 +1,31 @@
 <div class="row">
   <%= paginate @articles %>
-  <% @articles.each do |article| %>
-  <div class="box col-md-8">
-    <div class="title-bar">
-      <%= link_to_article_by_perma_link(article, {class: "title"}) %>
+  <div class="col-md-9">
+    <% @articles.each do |article| %>
+    <div class="box">
+      <div class="title-bar">
+        <%= link_to_article_by_perma_link(article, {class: "title"}) %>
+      </div>
+      <div class="article-info">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= article.count %>
+        <span class="glyphicon glyphicon-user"></span>
+        <%= article.user.ident %>
+        <span class="glyphicon glyphicon-time"></span>
+        <%= article.created_at %>
+        <span class="glyphicon glyphicon-comment"></span>
+        コメント(<%= article.comments.length %>)
+      </div>
+      <div class="clear">
+      </div>
+      <div>
+        <%= raw fold_article(article.content) %>
+      </div>
+      <hr>
     </div>
-    <div class="article-info">
-     <span class="glyphicon glyphicon-eye-open"></span>
-     <%= article.count %>
-     <span class="glyphicon glyphicon-user"></span>
-     <%= article.user.ident %>
-     <span class="glyphicon glyphicon-time"></span>
-     <%= article.created_at %>
-     <span class="glyphicon glyphicon-comment"></span>
-     コメント(<%= article.comments.length %>)
-    </div>
-    <div class="clear">
-    </div>
-    <div>
-    <%= raw fold_article(article.content) %>
-    </div>
-    <hr>
+    <% end %>
   </div>
-  <% end %>
+  <%= render :partial => 'side_bar', :locals => {:articles => @articles, :comments => @comments }%>
 </div>
+
 <%= link_to 'New Article', new_article_path %>

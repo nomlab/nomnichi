@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
       articles = Article.where("approved = ?", true).page(params[:page])
     end
     @articles = articles.order("created_at desc")
+    @comments = Comment.all.order("created_at desc").slice(0..4)
   end
 
   # GET /articles/1
