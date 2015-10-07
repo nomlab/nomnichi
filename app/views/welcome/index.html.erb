@@ -1,6 +1,58 @@
-<h1>Welcome#index</h1>
-ようこそ<br>
-<% @headline.each do |article| %>
-  <%= link_to_article_by_perma_link(article) %><br>
-<% end %>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<header>
+  <div style="float:left;">
+    <a href="http://www.swlab.cs.okayama-u.ac.jp/lab/nom">
+      <img width="120px" height="120px" src="img/okayama-university-logo.gif">
+    </a>
+  </div>
+  <div style="float:left;">
+    <h2> 岡山大学大学院 自然科学研究科 産業創成工学専攻</h2>
+    <h1> 計算機科学講座(乃村研究室)</h1>
+  </div>
+</header>
+
+<div class="home">
+  <h1 class="home"> 研究室概要</h1>
+  <p></p>
+  我々の研究室では， グループウェアとネットワークサービスの研究開発と， それらを通したソフトウェア開発の面白さを実践的に 習得することを目的としています．
+  <p></p>
+  また，オペレーティングシステム(OS)とその周辺についての 研究開発と，それらを通じた計算機そのものへの 深い理解を得ることも目的としています．
+  <p></p>
+  研究室の学生は，以下のプロジェクトのいずれかに 所属して研究開発を進めています．
+  <ul class="home">
+    <li>グループウェアとネットワークサービスグループ(GN)</li>
+    <li>新しいOSに関する研究開発グループ(New)</li>
+  </ul>
+  <dl>
+    <dt>[キーワード]</dt>
+    <dd>グループウェア，分散処理，計算機ネットワーク，オペレーティングシステム</dd>
+  </dl>
+</div>
+<div class="home">
+  <h1 class="home"> ノムニチ注目記事</h1>
+  <p></p>
+  <% @headline.each do |article| %>
+  <div class="box">
+    <div class="title-bar">
+      <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
+    </div>
+    <div class="article-info">
+      <span class="glyphicon glyphicon-eye-open"></span>
+      <%= article.count %>
+      <span class="glyphicon glyphicon-user"></span>
+      <%= article.user.ident %>
+      <span class="glyphicon glyphicon-time"></span>
+      <%= article.created_at %>
+      <span class="glyphicon glyphicon-comment"></span>
+      コメント(<%= article.comments.length %>)
+    </div>
+    <div class="clear">
+    </div>
+    <div>
+      <%= raw fold_article(article.content) %>
+    </div>
+    <hr>
+    <%= link_to_article_by_perma_link("(続きを読む)", article) %>
+  </div>
+  <% end %>
+  <%= link_to "(もっと読む)", articles_path %>
+</div>

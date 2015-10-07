@@ -1,3 +1,44 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+header div.blogtitle {
+    position: relative;
+    left: 25%;
+    float: left;
+    height: 80px;
+}
+
+div.home{
+    padding: 1em;
+    border: #F5DEB3 solid 2px;
+    border-radius: 5px;
+    margin: 0em 1em 1em 0em;
+    width: auto;
+    background: #FFF;
+    line-height: 1.5em;
+    color: #333;
+    clear: both;
+}
+
+h1.home{
+    font-size: 25px;
+    background: -moz-linear-gradient(left, #FF8C00, #F5DEB3);
+    background: -webkit-gradient(linear, left top, right top, from(#FF8C00), to(#F5DEB3));
+    color: #FFF;
+    padding: 3px 0 0 10px;
+    margin: -16px -16px 0 -16px;
+}
+
+/* h1 of articles
+   May be equal to h2.home */
+h1.title {
+    color: maroon;
+    border-color: wheat;
+    border-width: 0px 0px 1px 10px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    border-style: solid;
+}
