@@ -11,8 +11,8 @@ module ArticlesHelper
     Article.where(promote_headline: true).order("published_on desc").slice(0..nth)
   end
 
-  def link_to_article_by_perma_link(article, option = {})
-    link_to "#{article.title}", {controller: :articles, action: :show, perma_link: article.perma_link}, option
+  def link_to_article_by_perma_link(str, article, option = {})
+    link_to str, {controller: :articles, action: :show, perma_link: article.perma_link}, option
   end
 
   def fold_comment(body)

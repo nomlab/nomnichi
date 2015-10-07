@@ -2,7 +2,7 @@
   <h5 class="side-title">Comment</h5>
   <hr class="border">
   <% comments.each do |comment| %>
-  <p class="comment-article-title"><%= link_to_article_by_perma_link(comment.article) %></p>
+  <p class="comment-article-title"><%= link_to_article_by_perma_link(comment.article.title, comment.article) %></p>
   <p class="comment-body">> <%= fold_comment(comment.body) %></p>
   <p class="comment-name">by <%= comment.user.ident %></p>
   <% end %>
