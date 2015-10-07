@@ -22,4 +22,17 @@ module ArticlesHelper
       return body
     end
   end
+
+  def list_year_archives(articles)
+    year_archives = []
+    newest_year = articles.first.created_at.year
+    oldest_year = articles.last.created_at.year
+    newest_year.downto(oldest_year - 1).each do |year|
+      start_time = DateTime.new(year, 4, 1)
+      end_time = DateTime.new(year + 1, 3, 31, 23, 59, 59, 99)
+      item = articles.where("created_at >= ? and created_at <= ?", start_time, end_time).length
+      year_archives << {:year => "#{start_time.year}年度", :item => item}
+    end
+    year_archives.select {|year| year[:item] != 0}
+  end
 end

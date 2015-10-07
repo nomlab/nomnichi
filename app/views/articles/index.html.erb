@@ -25,7 +25,7 @@
     </div>
     <% end %>
   </div>
-  <%= render :partial => 'side_bar', :locals => {:articles => @articles, :comments => @comments }%>
+  <%= render :partial => 'side_bar', :locals => {:articles => @article_all, :comments => @comments }%>
 </div>
 
 <% unless User.current.nil? %>

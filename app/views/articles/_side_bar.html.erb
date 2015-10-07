@@ -6,4 +6,11 @@
   <p class="comment-body">> <%= fold_comment(comment.body) %></p>
   <p class="comment-name">by <%= comment.user.ident %></p>
   <% end %>
+  <h5 class="side-title">Archives</h5>
+  <hr class="border">
+  <ul>
+  <% list_year_archives(articles).each do |year| %>
+  <li><%= "#{year[:year]}(#{year[:item]})" %></li>
+  <% end %>
+  </ul>
 </div>
