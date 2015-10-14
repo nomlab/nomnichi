@@ -8,9 +8,10 @@
   <% end %>
   <h5 class="side-title">Archives</h5>
   <hr class="border">
-  <ul>
   <% list_year_archives(articles).each do |year| %>
-  <li><%= "#{year[:year]}(#{year[:item]})" %></li>
+  <p><%= "#{year[:year]}(#{year[:item]})" %></p>
+  <% year[:month].each do |month| %>
+  <p><%= "#{month[:month]}(#{month[:item]})" %></p>
   <% end %>
-  </ul>
+  <% end %>
 </div>
