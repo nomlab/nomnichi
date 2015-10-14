@@ -1,0 +1,3 @@
+[submodule "vendor/assets/jquery-treeview"]
+	path = vendor/assets/jquery-treeview
+	url = https://github.com/jzaefferer/jquery-treeview.git
