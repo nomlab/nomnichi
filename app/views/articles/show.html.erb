@@ -2,43 +2,61 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="row">
- <div class="box col-md-8">
-   <div class="title-bar">
-     <span class="title">
-       <%= @article.title %>
-     </span>
-   </div>
-   <div class="article-info">
-     <span class="glyphicon glyphicon-eye-open"></span>
-     <%= @article.count %>
-     <span class="glyphicon glyphicon-user"></span>
-     <%= @article.user.ident %>
-     <span class="glyphicon glyphicon-time"></span>
-     <%= @article.created_at  %>
-     <span class="glyphicon glyphicon-comment"></span>
-     コメント(<%= @article.comments.length %>)
-   </div>
+<div class="col-md-9">
+  <div class="row">
+    <div class="box">
+      <div class="title-bar">
+	<span class="title">
+	  <%= @article.title %>
+	</span>
+      </div>
+      <div class="article-info">
+	<span class="glyphicon glyphicon-eye-open"></span>
+	<%= @article.count %>
+	<span class="glyphicon glyphicon-user"></span>
+	<%= @article.user.ident %>
+	<span class="glyphicon glyphicon-time"></span>
+	<%= @article.created_at  %>
+	<span class="glyphicon glyphicon-comment"></span>
+	コメント(<%= @article.comments.length %>)
+      </div>
+      
+      <div class="clear">
+      </div>
+      
+      <div class="content">
+	<%= raw Kramdown::Document.new(@article.content).to_html %>
+      </div>
+      
+      <div class="clear">
+      </div>
+      
+      <hr>
+      
+      <div class="article-info">
+	<%= link_to '編集', edit_article_path(@article) %>
+      </div>
 
-   <div class="clear">
-   </div>
+      <div class="clear">
+      </div>
+      
+    </div>
+    
+    <div class="box">
+      <div class="title-bar">
+	<span class="title">
+	  Comment
+	</span>
+      </div>
+      <hr>
+      <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %>
+      <%= render :partial => '/comments/form',:locals => {:article => @article} unless User.current.nil?%>
+    </div>
+    
+    <div class="clear">
+    </div>
+    
+    <%= link_to '戻る', articles_path %>
 
-   <div class="content">
-     <%= raw Kramdown::Document.new(@article.content).to_html %>
-   </div>
- </div>
-
-<div class="box col-md-8">
-  <div class="title-bar">
-    <span class="title">
-    Comment
-    </span>
   </div>
-  <hr>
-  <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %>
-  <%= render :partial => '/comments/form',:locals => {:article => @article} unless User.current.nil?%>
-</div>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
 </div>
