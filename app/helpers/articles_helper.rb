@@ -16,7 +16,7 @@ module ArticlesHelper
   end
 
   def fold_comment(body)
-    comment_size = 40
+    comment_size = 30
     if get_str_bytesize(body) > comment_size
       bytes, fold_pos = get_fold_position(body, comment_size)
       return body.slice(0..fold_pos) + " ..."
