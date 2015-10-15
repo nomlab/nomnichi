@@ -16,6 +16,11 @@ $ mv config/secrets-example.yml config/secrets.yml
 #+BEGIN_SRC sh
 $ bundle exec rake db:migrate
 #+END_SRC
+** 4. jquery tree view の導入
+#+BEGIN_SRC sh
+$ git submodule init
+$ git submodule update
+#+END_SRC
 
 * 利用方法
 ** 1. Rails server の立ち上げ
