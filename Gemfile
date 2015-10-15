@@ -57,3 +57,6 @@ gem "omniauth-github-team-member"
 
 # application settings
 gem "settingslogic"
+
+gem 'jquery-treeview-rails', github: 'ikeda-yuko/jquery-treeview-rails', branch: 'master'
+

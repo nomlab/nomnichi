@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.treeview
-//= require jquery.treeview.edit
+//= require jquery_treeview
 //= require_tree .
 //= require bootstrap-sprockets

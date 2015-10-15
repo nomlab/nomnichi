@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/ikeda-yuko/jquery-treeview-rails.git
+  revision: 03455d4e6d9f975f3b2d01b3ee1554047545a7f2
+  branch: master
+  specs:
+    jquery-treeview-rails (1.0.2)
+      railties (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -185,6 +193,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-treeview-rails!
   kaminari
   kramdown
   omniauth
