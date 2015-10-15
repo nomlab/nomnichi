@@ -15,7 +15,7 @@ class GateController < ApplicationController
       set_current_user(user)
 
       reset_session_expires
-      redirect_to(session[:jumpto])
+      redirect_to(session[:jumpto] || '/')
 
     else
       flash.now[:danger] = "Invalid user/passwd."
