@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
 
   require "digest/sha1"
 
+  validates_uniqueness_of :ident
+  validates_uniqueness_of :uid, :scope => :provider
+
+  validates_format_of :ident, :with => /\A[a-zA-Z\d]+(-[a-zA-Z\d]+)*\z/
+
   def self.current=(user)
     @current_user = user
   end
