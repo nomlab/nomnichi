@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :articles
   resources :users
 
-  get "gate/index"
   match "gate/login", :via => [:get, :post]
   get "gate/logout"
 
