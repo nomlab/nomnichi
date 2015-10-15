@@ -22,6 +22,10 @@
   </div>
   <div class="box">
     <h2>Setting OmniAuth</h2>
-    <%= button_to "Associate with GitHub", "/auth/github", class: "btn btn-default" %>
+    <% unless @user.uid %>
+      <%= button_to "Associate with GitHub", "/auth/github", class: "btn btn-default" %>
+    <% else %>
+      Your account is already associated with GitHub.
+    <% end %>
   </div>
 </div>
