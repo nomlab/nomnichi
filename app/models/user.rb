@@ -18,4 +18,15 @@ class User < ActiveRecord::Base
     pass_sha = Digest::SHA1.hexdigest(user.salt + password)
     return where(["ident=? AND password=?", ident, pass_sha]).first
   end
+
+  # Omniauth-github has these info:
+  #   https://github.com/intridea/omniauth-github/blob/master/lib/omniauth/strategies/github.rb
+  #
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.provider = auth["provider"]
+      user.uid      = auth["uid"]
+      user.ident    = auth["info"]["nickname"]
+    end
+  end
 end
