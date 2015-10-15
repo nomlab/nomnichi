@@ -49,3 +49,11 @@ gem 'bootstrap-sass'
 gem 'kramdown'
 gem 'sanitize'
 gem 'kaminari'
+
+# OmniAuth + github
+gem 'omniauth'
+gem 'omniauth-github'
+gem "omniauth-github-team-member"
+
+# application settings
+gem "settingslogic"
