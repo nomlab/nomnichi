@@ -28,4 +28,6 @@
   <%= render :partial => 'side_bar', :locals => {:articles => @articles, :comments => @comments }%>
 </div>
 
-<%= link_to 'New Article', new_article_path %>
+<% unless User.current.nil? %>
+ <%= link_to 'New Article', new_article_path %>
+<% end %>

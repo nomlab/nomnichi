@@ -32,10 +32,12 @@
       </div>
       
       <hr>
-      
-      <div class="article-info">
-	<%= link_to '編集', edit_article_path(@article) %>
-      </div>
+
+      <% unless User.current.nil? %>
+       <div class="article-info">
+  	<%= link_to '編集', edit_article_path(@article) %>
+       </div>
+      <% end %>
 
       <div class="clear">
       </div>
@@ -60,3 +62,4 @@
 
   </div>
 </div>
+
