@@ -12,11 +12,11 @@
     <h2>Change password</h2>
     <%= form_tag "/users/#{@user.id}/change_password", method: :put do %>
       <label>Old password (OmniAuth default: blank)</label>
-      <input type="text" class="form-control" name="old_password">
+      <input type="password" class="form-control" name="old_password">
       <label>New password</label>
-      <input type="text" class="form-control" name="new_password">
+      <input type="password" class="form-control" name="new_password">
       <label>Confirm new password</label>
-      <input type="text" class="form-control" name="password_for_confirming">
+      <input type="password" class="form-control" name="password_for_confirming">
       <%= button_tag "Change Password", class: "btn btn-default" %>
     <% end %>
   </div>
