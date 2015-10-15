@@ -1,3 +1,4 @@
+# coding: utf-8
 # Scopes added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
@@ -8,7 +9,47 @@ class ApplicationController < ActionController::Base # :nodoc:
   # Scrub sensitive parameters from your log
   # scope_parameter_logging :password
   prepend_before_filter :login_state_setup
-  before_filter :authenticate
+  before_filter :authenticate, except: :rescue_404
+
+  def rescue_404
+    absolute_root = File.join(File.expand_path(Rails.root), '')
+    template = File.expand_path(File.join('public_html', params[:path]), Rails.root)
+    template << "." + params[:format] if params[:format].present?
+
+    if template.index(absolute_root) == 0
+      if File.directory?(template) and /\/\z/ !~ request.fullpath
+	return redirect_to(request.fullpath + "/")
+      end
+
+      if /\/\z/ =~ request.fullpath
+        ['.html.erb', '.erb', '.rhtml', '.html'].each do |ext|
+          if File.file?(template+'/index'+ ext)
+            template = template + '/index' + ext
+            break
+          end
+        end
+      end
+
+      ['.html.erb', '.erb', '.rhtml', '.html'].each do |ext|
+        return render(:file => template+ext,
+                      :layout => 'application') if File.file?(template+ext)
+      end
+
+      if template =~ /\.html$/ and File.file?(template)
+        return render(:file => template, :layout => 'application')
+      end
+
+      if template =~ /\.txt$/ and File.file?(template)
+        return send_file(template, :type => 'text/plain',
+                         :disposition => 'inline')
+      end
+
+      if File.file?(template)
+        return send_file(template)
+      end
+    end
+    render :file => File.join(Rails.root,  'public_html', '404.html')
+  end
 
   private
   def escape_javascript(string)
