@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   has_many :articles
   has_many :comments
 
- require "digest/sha1"
+  require "digest/sha1"
 
- def self.current=(user)
+  def self.current=(user)
     @current_user = user
   end
 
