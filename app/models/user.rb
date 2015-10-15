@@ -41,4 +41,11 @@ class User < ActiveRecord::Base
   def self.encrypted_password(unencrypted_password, salt)
     Digest::SHA1.hexdigest(salt + unencrypted_password)
   end
+
+  def update_with_omniauth(auth)
+    update!(
+      provider: auth["provider"],
+      uid:      auth["uid"]
+    )
+  end
 end

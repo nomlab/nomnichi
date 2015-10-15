@@ -6,8 +6,17 @@ class GateController < ApplicationController
   end
 
   def login
+    # Associate with provider account
+    auth = request.env["omniauth.auth"]
+    if auth && User.current
+      User.current.update_with_omniauth(auth)
+      flash[:info] = "Nomnichi account is associated with #{auth["provider"]}"
+      redirect_to "/settings"
+      return false
+    end
+
     # Omni Auth
-    if auth = request.env["omniauth.auth"]
+    if auth
       unless auth.credentials.active_member?
         render text: "Unauthorized", status: 401
         return false
