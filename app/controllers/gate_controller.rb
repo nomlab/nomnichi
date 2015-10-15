@@ -2,7 +2,6 @@ class GateController < ApplicationController
   skip_before_filter :authenticate
 
   def index
-    redirect_to :controller => :welcome, :action => "index"
   end
 
   def login

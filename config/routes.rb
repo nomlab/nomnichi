@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   put 'users/:id/change_password', to: 'users#change_password'
   resources :users, except: :edit
 
+  get "gate/index"
   get "/auth/:provider/callback", to: "gate#login"
   match "gate/login", :via => [:get, :post]
   get "gate/logout"
