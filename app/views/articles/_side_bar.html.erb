@@ -20,10 +20,10 @@
   <hr class="border">
   <ul class="yearly">
   <% list_year_archives(articles).each do |year| %>
-  <li><%= "#{year[:year]}(#{year[:item]})" %>
+  <li><%= link_to "#{year[:year]}年度(#{year[:item]})", controller: "articles", action: "archive", year: year[:year]%>
     <ul>
       <% year[:month].each do |month| %>
-      <li><%= "#{month[:month]}(#{month[:item]})" %></li>
+      <li><%= link_to("#{month[:month]}月(#{month[:item]})", controller: "articles", action: "archive", year: year[:year], month: month[:month]) %></li>
       <% end %>
     </ul>
   </li>

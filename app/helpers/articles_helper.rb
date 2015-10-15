@@ -33,7 +33,7 @@ module ArticlesHelper
       start_time = DateTime.new(year, 4, 1)
       end_time = DateTime.new(year + 1, 3, 31, 23, 59, 59, 99)
       item = articles.where("created_at >= ? and created_at <= ?", start_time, end_time)
-      year_archives << {:year => "#{start_time.year}年度", :item => item.length, :month => list_month_archives(item)} unless item.empty?
+      year_archives << {:year => "#{start_time.year}", :item => item.length, :month => list_month_archives(item)} unless item.empty?
     end
     year_archives.select
   end
@@ -45,7 +45,7 @@ module ArticlesHelper
     oldest_month = articles.last.created_at.month
     ["04","05","06","07","08","09","10","11","12","01","02","03"].each do |month|
       item = articles.where("strftime('%m',created_at) = ?",month)
-      month_archives << {:month => "#{month}月", :item => item.length}
+      month_archives << {:month => "#{month}", :item => item.length}
     end
     month_archives.select {|month| month[:item] != 0}
   end

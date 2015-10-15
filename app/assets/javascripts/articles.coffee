@@ -19,6 +19,7 @@ ready = ->
   setupRenderPreviewButton('#preview')
   $('.yearly').treeview(
     collapsed: true
+    hoverClass: "archive-hover"
   )
 
 $(document).ready(ready)

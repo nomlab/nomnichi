@@ -8,9 +8,22 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     if User.current
-      articles = Article.all.page(params[:page])
+      if params[:start] && params[:end]
+        articles = Article.where("created_at >= ? and created_at <= ?",
+                                 DateTime.parse(params[:start]),
+                                 DateTime.parse(params[:end])).page(params[:page])
+      else
+        articles = Article.all.page(params[:page])
+      end
     else
-      articles = Article.where("approved = ?", true).page(params[:page])
+      if params[:start] && params[:end]
+        articles = Article.where("approved = ? and created_at >= ? and created_at <= ?",
+                                 true,
+                                 DateTime.parse(params[:start]),
+                                 DateTime.parse(params[:end])).page(params[:page])
+      else
+        articles = Article.where("approved = ?",true).page(params[:page])
+      end
     end
     @articles = articles.order("created_at desc")
     @article_all = Article.all.order("created_at desc")
@@ -74,6 +87,24 @@ class ArticlesController < ApplicationController
 
   def preview
     render text: Kramdown::Document.new(article_params[:content]).to_html
+  end
+
+  def archive
+    year = params[:year].to_i
+    month = params[:month].to_i
+
+    if params[:month] != nil
+      start_time = DateTime.new(year, month, 1)
+      end_time = (start_time >> 1) - Rational(1, 24 * 60 * 60)
+    else
+      start_time = DateTime.new(year, 4, 1)
+      end_time = DateTime.new(year + 1, 3, 31, 23, 59, 59, 99)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to action: :index, start: start_time, end: end_time}
+    end
+
   end
 
   private
