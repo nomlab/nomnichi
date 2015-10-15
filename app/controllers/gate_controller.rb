@@ -6,11 +6,22 @@ class GateController < ApplicationController
   end
 
   def login
-    if request.get?
-      flash.now[:info] = "Please login first."
-      reset_current_user
+    # Omni Auth
+    if auth = request.env["omniauth.auth"]
+      unless auth.credentials.active_member?
+        render text: "Unauthorized", status: 401
+        return false
+      end
 
-    elsif user = User.authenticate(params[:ident], params[:password])
+      user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) ||
+             User.create_with_omniauth(auth)
+
+    # BASIC authentication
+    else
+      user = User.authenticate(params[:ident], params[:password])
+    end
+
+    if user
       flash[:info] = "User #{user.ident} logged in."
       set_current_user(user)
 
