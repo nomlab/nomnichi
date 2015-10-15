@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'articles/archive/:year(/:month)', to: 'articles#archive'
   resources :comments
   resources :articles
-  resources :users
+  get 'settings', to:  'users#edit'
+  put 'users/:id/change_password', to: 'users#change_password'
+  resources :users, except: :edit
 
   get "/auth/:provider/callback", to: "gate#login"
   match "gate/login", :via => [:get, :post]

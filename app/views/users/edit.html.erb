@@ -1,6 +1,23 @@
-<h1>Editing User</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="col-md-5">
+  <h1>Account Settings</h1>
+  <div class="box setting-box">
+    <h2>Change ident</h2>
+    <%= form_tag "/users/#{@user.id}", {method: :put} do %>
+      <label>ident</label>
+      <%= text_field :user, :ident, class: "form-control" %>
+      <%= button_tag "Change ident", class: "btn btn-default" %>
+    <% end %>
+  </div>
+  <div class="box">
+    <h2>Change password</h2>
+    <%= form_tag "/users/#{@user.id}/change_password", method: :put do %>
+      <label>Old password (OmniAuth default: blank)</label>
+      <input type="text" class="form-control" name="old_password">
+      <label>New password</label>
+      <input type="text" class="form-control" name="new_password">
+      <label>Confirm new password</label>
+      <input type="text" class="form-control" name="password_for_confirming">
+      <%= button_tag "Change Password", class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

@@ -33,4 +33,12 @@ class User < ActiveRecord::Base
       user.ident    = auth["info"]["nickname"]
     end
   end
+
+  def self.generate_salt
+    Time.now.to_s
+  end
+
+  def self.encrypted_password(unencrypted_password, salt)
+    Digest::SHA1.hexdigest(salt + unencrypted_password)
+  end
 end

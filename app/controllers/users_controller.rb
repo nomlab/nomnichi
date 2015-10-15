@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy, :change_password]
+  before_filter :authenticate
 
   # GET /users
   # GET /users.json
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.current
   end
 
   # POST /users
@@ -42,10 +44,16 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html {
+          flash[:info] = 'Successfully updated.'
+          redirect_to "/settings"
+        }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:danger] = 'Updating was failed.'
+          render "/settings"
+        }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -58,6 +66,33 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # POST /users/1/change_password
+  def change_password
+    unless User.authenticate(@user.ident, params[:old_password]) == User.current
+      flash[:danger] = 'Old password is wrong.'
+      redirect_to "/settings"
+      return false
+    end
+
+    unless params[:new_password] == params[:password_for_confirming]
+      flash[:danger] = 'Password does not match the confirmation'
+      redirect_to "/settings"
+      return false
+    end
+
+    unencrypted_password = params[:new_password]
+    salt = User.generate_salt
+    encrypted_password = User.encrypted_password(unencrypted_password, salt)
+
+    if @user.update(password: encrypted_password, salt: salt)
+      flash[:info] = 'Successfully updated.'
+      redirect_to "/settings"
+    else
+      flash[:danger] = 'Updating was failed.'
+      render "/settings"
     end
   end
 
