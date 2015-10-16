@@ -35,3 +35,6 @@ bower.json
 
 # Ignore application settings
 config/application_settings.yml
+
+# Ignore precompiled assets
+public/assets
