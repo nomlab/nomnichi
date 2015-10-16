@@ -1,24 +1,7 @@
 <div class="row">
   <%= paginate @articles %>
   <div class="col-md-9">
-    <% @articles.each do |article| %>
-    <div class="box">
-      <div class="title-bar">
-        <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
-        <% unless article.approved %>
-          <%= glyphicon "eye-close" %>
-        <% end %>
-      </div>
-      <%= render partial: "info", locals: {article: article} %>
-      <div class="clear">
-      </div>
-      <div>
-        <%= raw fold_article(article.content) %>
-      </div>
-      <hr>
-      <%= link_to_article_by_perma_link("(続きを読む)", article) %>
-    </div>
-    <% end %>
+    <%= render partial: "card", collection: @articles, as: :article %>
   </div>
   <%= render :partial => 'side_bar', :locals => {:articles => @article_all, :comments => @comments }%>
 </div>

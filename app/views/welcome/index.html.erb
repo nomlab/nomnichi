@@ -35,20 +35,6 @@
     <h1 class="contents-title"> ノムニチ注目記事</h1>
   </div>
   <p></p>
-  <% @headline.each do |article| %>
-  <div class="box">
-    <div class="title-bar">
-      <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
-    </div>
-    <%= render partial: "articles/info", locals: {article: article} %>
-    <div class="clear">
-    </div>
-    <div>
-      <%= raw fold_article(article.content) %>
-    </div>
-    <hr>
-    <%= link_to_article_by_perma_link("(続きを読む)", article) %>
-  </div>
-  <% end %>
+  <%= render partial: "articles/card", collection: @headline, as: :article %>
   <%= link_to "(もっと読む)", articles_path %>
 </div>
