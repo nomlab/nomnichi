@@ -8,7 +8,7 @@
 # update by ogasawara & takiguchi 2007-02-22 不要な欄を消去・改行を防いだ
 # update by yusuke 2008-04-28 /lab/tani 以下に移動し，静的HTMLを吐くように修正
 # update by kurihara 2009-04-41 /lab/nom/info 以下にコピーし，乃村研用の卒業・修了論文のページを作成するように変更
-# update by ushio 2010-02-16 スタイルの乱れを修正 
+# update by ushio 2010-02-16 スタイルの乱れを修正
 use File::Basename;
 
 $BaseDir = "DB/thesis";
@@ -19,9 +19,9 @@ $jthesis = "【論文】";
 $jabst = "【予稿】";
 $FIND = "/usr/bin/find $BaseDir \\( -name '*.ps' -o -name '*.pdf' \\) -print ";
 @DEGREE = ('bachelor', 'master', 'doctor');
-%JDEGREE = ('bachelor' => '卒業論文', 
-	    'master' => '修士論文',
-	    'doctor' => '博士論文');
+%JDEGREE = ('bachelor' => '卒業論文',
+            'master' => '修士論文',
+            'doctor' => '博士論文');
 %ICONPARAM = ('width' => 20, 'height' => 22);
 @FindResult = ();
 @MEMBERLIST = ();
@@ -49,20 +49,20 @@ foreach $degree (@DEGREE) {
   print  "<table>","\n";
   foreach $mem (@MEMBERLIST) {
     unless ($MEMBERS{$mem}->{$degree._finish} == $year) {
-	# 同じ年度が複数表示される問題へのやっつけ対処 by yusuke
+        # 同じ年度が複数表示される問題へのやっつけ対処 by yusuke
     unless ($MEMBERS{$mem}->{$degree._finish} == '') {
       print "<tr>","\n";
       print "<td colspan=5><font size=\"+2\">$MEMBERS{$mem}->{$degree._finish}</font></td>";
       print "</tr>","\n";
       $year = $MEMBERS{$mem}->{$degree._finish};
-	}
+        }
     }
     if ($MEMBERS{$mem}->{$degree._title}) {
       print "<tr>","\n";
       $title = "『".$MEMBERS{$mem}->{$degree._title}."』";
       $title =~ s!Tender!<font size="+1"><b><i>Tender</i></b></font> !g;
       $title =~ s!AnT!<font size="+1"><b><i>AnT</i></b></font> !g;
-      print "<td>$title</td>\n";  
+      print "<td>$title</td>\n";
       $name = "(".$MEMBERS{$mem}->{"name"}.")";
       print "<td nowrap>$name</td>\n";
       print "<td nowrap>$jthesis</td>\n";
@@ -92,8 +92,8 @@ exit 0;
 ### Sub Routine
 
 sub PrintHeader {
-	my $htmlheader;
-	$htmlheader = <<HTMLHEADER;
+        my $htmlheader;
+        $htmlheader = <<HTMLHEADER;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 <html>
   <head>
@@ -108,7 +108,7 @@ sub PrintHeader {
 <a href="$BaseDir/README">データの追加方法</a>
 HTMLHEADER
 
-	print $htmlheader;
+        print $htmlheader;
 }
 
 sub PrintLink($$$) {
@@ -149,23 +149,22 @@ HTMLFOOTER
 }
 
 sub GetMemberList {
-	open(MEMBERFILE, $MemberListFile) || die "Can not open $MemberListFile .";
-	while(<MEMBERFILE>) {
-		next if (/^\#/);
-		chomp;
+        open(MEMBERFILE, $MemberListFile) || die "Can not open $MemberListFile .";
+        while(<MEMBERFILE>) {
+                next if (/^\#/);
+                chomp;
 
-		($dirname, $name, $b_finish, $b_title, $m_finish, $m_title, $d_finish, $d_title) = split(/,/,$_, -1);
-		push(@MEMBERLIST, $dirname);
-		$MEMBERS{$dirname} = {"name" => $name,
-			"bachelor_finish" => $b_finish,
-			"bachelor_title" => $b_title,
-			"master_finish" => $m_finish,
-			"master_title" => $m_title,
-			"doctor_finish" => $d_finish,
-			"doctor_title" => $d_title
-		}
-	}
-	close(MEMBERFILE);
-	return %MEMBERS;
+                ($dirname, $name, $b_finish, $b_title, $m_finish, $m_title, $d_finish, $d_title) = split(/,/,$_, -1);
+                push(@MEMBERLIST, $dirname);
+                $MEMBERS{$dirname} = {"name" => $name,
+                        "bachelor_finish" => $b_finish,
+                        "bachelor_title" => $b_title,
+                        "master_finish" => $m_finish,
+                        "master_title" => $m_title,
+                        "doctor_finish" => $d_finish,
+                        "doctor_title" => $d_title
+                }
+        }
+        close(MEMBERFILE);
+        return %MEMBERS;
 }
-

@@ -49,7 +49,7 @@
 \place{何処かしら}
 \date{\today}
 
-\def\maketitle{}		% 何もしない
+\def\maketitle{}                % 何もしない
 
 \AtBeginDocument{%
   \newpage

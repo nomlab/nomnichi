@@ -52,24 +52,24 @@
 % \end{document}
 %
 % 本文では以下の項目が使える。
-% 
+%
 % \abstract{要約}    % 要約 KAWAHARA ADD
 % \tableandlists     % 目次、図目次、表目次
 %
-% \preface{まえがき}			% ○ まえがき
-% \part{卒論/修論}			% ○ 第 I 部などとなる。
-% \chapter{はじめに}			% ○ 章
-% \section{目的}			% ○ セクション
-% \subsection{スタイルファイル}		% ○ サブセクション
-% \subsubsection{}			%    サブサブセクション
-% \paragraph{}				%    パラグラフ
-% \subparagraph{}			%    サブパラグラフ
-% \acknowledgment			% ○ 謝辞
-% \begin{thebibliography}		% ○ 参考文献
+% \preface{まえがき}                    % ○ まえがき
+% \part{卒論/修論}                      % ○ 第 I 部などとなる。
+% \chapter{はじめに}                    % ○ 章
+% \section{目的}                        % ○ セクション
+% \subsection{スタイルファイル}         % ○ サブセクション
+% \subsubsection{}                      %    サブサブセクション
+% \paragraph{}                          %    パラグラフ
+% \subparagraph{}                       %    サブパラグラフ
+% \acknowledgment                       % ○ 謝辞
+% \begin{thebibliography}               % ○ 参考文献
 % \bibitem
 % \end{thebibliography}
-% \appendix				% 付録
-%  \chapter{付録の章}			% ○ \chapter を続ける
+% \appendix                             % 付録
+%  \chapter{付録の章}                   % ○ \chapter を続ける
 %
 % ○のついている項目は目次に現れる。
 %
@@ -84,7 +84,7 @@
 %%% とすればルビがふれる。
 %
 % 以上
-%			花田 泰紀 (yasunori@swlab.csce.kyushu-u.ac.jp)
+%                       花田 泰紀 (yasunori@swlab.csce.kyushu-u.ac.jp)
 
 % 表紙の設定など、岡山大学のフォーマットに合わせて一部勝手に弄りました。
 % \maketitle では表紙しか出力しなくしましたので注意してください。
@@ -100,8 +100,8 @@
 %% 用紙設定
 %%
 
-%\setlength{\hoffset}{-1mm}		% 1mm左にずらす
-\newlength{\SIDEMARGIN}			% 左右のマージン
+%\setlength{\hoffset}{-1mm}             % 1mm左にずらす
+\newlength{\SIDEMARGIN}                 % 左右のマージン
 \ifnoheadfoot
 \setlength{\SIDEMARGIN}{42mm}
 \else
@@ -113,10 +113,10 @@
 \ifnoheadfoot
   \setlength{\textwidth}{50zw}
 \else
-  \setlength{\textwidth}{\paperwidth}	% 本文の幅
+  \setlength{\textwidth}{\paperwidth}   % 本文の幅
 \fi
 \addtolength{\textwidth}{-2\SIDEMARGIN}
-\addtolength{\textwidth}{-1mm}		% 微調整
+\addtolength{\textwidth}{-1mm}          % 微調整
 
 \setlength{\textheight}{650pt}
 \setlength{\headsep}{15pt}
@@ -124,8 +124,8 @@
 \setlength{\topskip}{20pt}
 \setlength{\footskip}{18pt}
 
-\setlength{\leftmargin}{25mm}	% リスト環境の左マージン
-\setlength{\rightmargin}{17mm}	% リスト環境の右マージン
+\setlength{\leftmargin}{25mm}   % リスト環境の左マージン
+\setlength{\rightmargin}{17mm}  % リスト環境の右マージン
 
 %
 % default設定
@@ -147,7 +147,7 @@
 \def\tablename{表 }
 \def\figurename{図 }
 \def\indexname{索引}
-\def\refname{参考文献} 
+\def\refname{参考文献}
 %\def\listtablename{表一覧}
 %\def\listfigurename{図一覧}
 \def\contentsname{目次}
@@ -304,13 +304,13 @@
 \chapterfont{\huge\bf}
 %\sectionfont{\Large\bf}{\large\bf}{\large\bf}
 
-\def\@makechapterhead#1{ \vspace*{50pt} { \parindent 0pt \raggedright 
- \ifnum \c@secnumdepth >\m@ne \font@c \@chapapp{\thechapter}\@chappos\par 
- \vskip 40pt plus 10pt minus 10pt \fi \font@c \bf #1\par 
+\def\@makechapterhead#1{ \vspace*{50pt} { \parindent 0pt \raggedright
+ \ifnum \c@secnumdepth >\m@ne \font@c \@chapapp{\thechapter}\@chappos\par
+ \vskip 40pt plus 10pt minus 10pt \fi \font@c \bf #1\par
  \nobreak \vskip 40pt plus 10pt minus 10pt } }
 
-\def\@makeschapterhead#1{ \vspace*{50pt} { \parindent 0pt \raggedright 
- \font@c \bf #1\par 
+\def\@makeschapterhead#1{ \vspace*{50pt} { \parindent 0pt \raggedright
+ \font@c \bf #1\par
  \nobreak \vskip 40pt plus 10pt minus 10pt } }
 
 \def\@chapter[#1]#2{%
@@ -327,7 +327,7 @@
   \@makechapterhead{#2}\@afterheading}
 
 \def\chapter{\clearpage \thispagestyle{plain} \global\@topnum\z@
-\@afterindenttrue \secdef\@chapter\@schapter} 
+\@afterindenttrue \secdef\@chapter\@schapter}
 
 % 図のキャプションから":"（コロン）を除去
 \long\def\@makecaption#1#2{%
@@ -386,11 +386,11 @@
 \def\endtheindex{\if@restonecol\onecolumn\else\clearpage\fi}
 \def\indexspace{\par \vskip 10pt plus 5pt minus 3pt\relax}
 
-\def\footnoterule{\kern-3\p@ 
- \hrule width .4\columnwidth 
- \kern 2.6\p@} 
-\@addtoreset{footnote}{chapter} 
-\long\def\@makefntext#1{\parindent 1em\noindent 
+\def\footnoterule{\kern-3\p@
+ \hrule width .4\columnwidth
+ \kern 2.6\p@}
+\@addtoreset{footnote}{chapter}
+\long\def\@makefntext#1{\parindent 1em\noindent
  \hbox to 1.8em{\hss$^{\@thefnmark}$}#1}
 
 %
@@ -413,7 +413,7 @@
   \chaptermark{##1}
   \addtocontents{lof}{\protect\addvspace{10pt}}
   \addtocontents{lot}{\protect\addvspace{10pt}} \if@twocolumn
-  \@topnewpage[\@makechapterhead{##2}] 
+  \@topnewpage[\@makechapterhead{##2}]
   \else \@makechapterhead{##2}
   \@afterheading \fi}
 }
@@ -451,9 +451,9 @@
 %
 
 %\def\@ptsize{2} \@namedef{ds@10pt}{\def\@ptsize{0}}
-%\@namedef{ds@11pt}{\def\@ptsize{1}} 
+%\@namedef{ds@11pt}{\def\@ptsize{1}}
 %\def\ds@twoside{\@twosidetrue \@mparswitchtrue} \def\ds@draft{\overfullrule
-%5pt} 
+%5pt}
 %\@options
 %\input j-rep1\@ptsize.sty\relax
 
@@ -473,26 +473,26 @@
 %\def\document{\endgroup
 %  \@colht\textheight  \@colroom\textheight \vsize\textheight
 %   \columnwidth\textwidth \@clubpenalty\clubpenalty
-%   \if@twocolumn \advance\columnwidth -\columnsep 
-%      \divide\columnwidth\tw@ \hsize\columnwidth \@firstcolumntrue 
+%   \if@twocolumn \advance\columnwidth -\columnsep
+%      \divide\columnwidth\tw@ \hsize\columnwidth \@firstcolumntrue
 %   \fi
 %  \hsize\columnwidth \linewidth\hsize
 %  \begingroup\@floatplacement\@dblfloatplacement
 %   \makeatletter\let\@writefile\@gobbletwo
-%   \@input{\jobname.aux}\endgroup 
+%   \@input{\jobname.aux}\endgroup
 %  \if@filesw \immediate\openout\@mainaux=\jobname.aux
 %    \immediate\write\@mainaux{\relax}\fi
 %  \def\do##1{\let ##1\@notprerr}
 %  \@preamblecmds
-%  \let\do\noexpand  
+%  \let\do\noexpand
 %  \@normalsize\everypar{}% changed for ntt-jtex 1.51 1996/6/6 by nom
 %  \maketitle\everypar{}
 %  }
 %
 
 \iftanilabenum
-  \def\labelenumi{(\theenumi)} 
-  \def\theenumi{\arabic{enumi}} 
+  \def\labelenumi{(\theenumi)}
+  \def\theenumi{\arabic{enumi}}
   \def\labelenumii{(\theenumii)}
   \def\theenumii{\Alph{enumii}}
   \def\p@enumii{\theenumi}
@@ -500,11 +500,11 @@
   \def\theenumiii{\alph{enumiii}}
   \def\p@enumiii{\theenumi(\theenumii)}
   \def\labelenumiv{(\theenumiv)}
-  \def\theenumiv{\roman{enumiv}} 
+  \def\theenumiv{\roman{enumiv}}
   \def\p@enumiv{\p@enumiii\theenumiii}
-\else  
-  \def\labelenumi{\theenumi.} 
-  \def\theenumi{\arabic{enumi}} 
+\else
+  \def\labelenumi{\theenumi.}
+  \def\theenumi{\arabic{enumi}}
   \def\labelenumii{(\theenumii)}
   \def\theenumii{\alph{enumii}}
   \def\p@enumii{\theenumi}
@@ -512,7 +512,7 @@
   \def\theenumiii{\roman{enumiii}}
   \def\p@enumiii{\theenumi(\theenumii)}
   \def\labelenumiv{\theenumiv.}
-  \def\theenumiv{\Alph{enumiv}} 
+  \def\theenumiv{\Alph{enumiv}}
   \def\p@enumiv{\p@enumiii\theenumiii}
 \fi
 
@@ -521,8 +521,8 @@
 \def\labelitemiii{$\ast$}
 \def\labelitemiv{$\cdot$}
 
-%\def\verse{\let\\=\@centercr 
-% \list{}{\itemsep\z@ \itemindent -1.5em\listparindent \itemindent 
+%\def\verse{\let\\=\@centercr
+% \list{}{\itemsep\z@ \itemindent -1.5em\listparindent \itemindent
 % \rightmargin\leftmargin\advance\leftmargin 1.5em}\item[]}
 %\let\endverse\endlist
 %\def\quotation{\list{}{\listparindent 1.5em
@@ -544,24 +544,24 @@
  \else \newpage \fi \thispagestyle{empty}\c@page\z@}
 \def\endtitlepage{\if@restonecol\twocolumn \else \newpage \fi}
 
-\arraycolsep 5pt \tabcolsep 6pt \arrayrulewidth .4pt \doublerulesep 2pt 
-\tabbingsep \labelsep 
+\arraycolsep 5pt \tabcolsep 6pt \arrayrulewidth .4pt \doublerulesep 2pt
+\tabbingsep \labelsep
 \skip\@mpfootins = \skip\footins
-\fboxsep = 3pt \fboxrule = .4pt 
+\fboxsep = 3pt \fboxrule = .4pt
 %
 
 \def\part{\cleardoublepage \thispagestyle{plain} \if@twocolumn \onecolumn
-\@tempswatrue \else \@tempswafalse \fi \hbox{}\vfil \secdef\@part\@spart} 
+\@tempswatrue \else \@tempswafalse \fi \hbox{}\vfil \secdef\@part\@spart}
 
 \def\@part[#1]#2{\ifnum \c@secnumdepth >-2\relax \refstepcounter{part}
 \addcontentsline{toc}{part}{\thepart \hspace{1em}#1}\else
 \addcontentsline{toc}{part}{#1}\fi \markboth{}{}
 \@chaptermark{\@partapp{\thepart}\ #1}
  {\centering \ifnum \c@secnumdepth >-2\relax \LARGE\bf \@partapp{\thepart} \par
-\vskip 20pt \fi \LARGE \bf #1\par}\@endpart} 
-\def\@endpart{\vfil\newpage \if@twoside \hbox{} \thispagestyle{empty} 
- \newpage 
- \fi \if@tempswa \twocolumn \fi} 
+\vskip 20pt \fi \LARGE \bf #1\par}\@endpart}
+\def\@endpart{\vfil\newpage \if@twoside \hbox{} \thispagestyle{empty}
+ \newpage
+ \fi \if@tempswa \twocolumn \fi}
 \def\@spart#1{{\centering \LARGE \bf #1\par}\@endpart}
 %
 \def\@pnumwidth{1.55em}
@@ -575,13 +575,13 @@
 %\def\l@part#1#2{\addpenalty{-\@highpenalty}
 % \addvspace{2.25em plus 1pt} \begingroup
 % \@tempdima 3em \parindent \z@ \rightskip \@pnumwidth \parfillskip
-%-\@pnumwidth 
+%-\@pnumwidth
 % {\large \bf \leavevmode #1\hfil \hbox to\@pnumwidth{\hss #2}}\par
 % \nobreak \endgroup}
-%\def\l@chapter#1#2{\pagebreak[3] 
+%\def\l@chapter#1#2{\pagebreak[3]
 % \vskip 1.0em plus 1pt \@tempdima 1.5em \begingroup
-% \parindent \z@ \rightskip \@pnumwidth 
-% \parfillskip -\@pnumwidth 
+% \parindent \z@ \rightskip \@pnumwidth
+% \parfillskip -\@pnumwidth
 % \bf \leavevmode \advance\leftskip\@tempdima \hskip -\leftskip #1 \nobreak\hfil
 %\nobreak\hbox to\@pnumwidth{\hss #2}\par
 % \endgroup}
@@ -628,10 +628,10 @@
 %\def\dblfloatpagefraction{.5}
 
 %\long\def\@makecaption#1#2{
-% \vskip 10pt 
+% \vskip 10pt
 % \setbox\@tempboxa\hbox{#1: #2}
 % \ifdim \wd\@tempboxa >\hsize #1: #2\par \else \hbox
-%to\hsize{\hfil\box\@tempboxa\hfil} 
+%to\hsize{\hfil\box\@tempboxa\hfil}
 % \fi}
 
 %\newcounter{figure}[chapter]
@@ -657,10 +657,10 @@
 %
 %%\input j-titlepage.sty
 %
-\mark{{}{}} 
+\mark{{}{}}
 
 \if@twoside \def\ps@headings{\let\@mkboth\markboth
-\def\@oddfoot{}\def\@evenfoot{}\def\@evenhead{\rm \thepage\hfil 
+\def\@oddfoot{}\def\@evenfoot{}\def\@evenhead{\rm \thepage\hfil
 \leftmark}\def\@oddhead{\hbox{} \rightmark \hfil
 \rm\thepage}\def\chaptermark##1{\markboth {{\ifnum \c@secnumdepth
 >\m@ne
@@ -680,11 +680,11 @@
 \def\sectionmark##1{}\def\subsectionmark##1{}}
 
 %
-%\@addtoreset{equation}{chapter} 
+%\@addtoreset{equation}{chapter}
 %\def\theequation{\thechapter.\arabic{equation}}
 
 %
-\ps@plain \pagenumbering{arabic} \onecolumn \if@twoside\else\raggedbottom\fi 
+\ps@plain \pagenumbering{arabic} \onecolumn \if@twoside\else\raggedbottom\fi
 
 \flushbottom
 
@@ -693,4 +693,3 @@
 \def\sloppy{\tolerance 5000 \hfuzz .5\p@ \vfuzz .5\p@}
 
 \endinput
-

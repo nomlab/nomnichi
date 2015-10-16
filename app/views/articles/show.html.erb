@@ -6,9 +6,9 @@
   <div class="row">
     <div class="box">
       <div class="title-bar">
-	<span class="title">
-	  <%= @article.title %>
-	</span>
+        <span class="title">
+          <%= @article.title %>
+        </span>
       </div>
       <%= render partial: "info", locals: {article: @article} %>
 
@@ -16,7 +16,7 @@
       </div>
 
       <div class="content">
-	<%= raw Kramdown::Document.new(@article.content).to_html %>
+        <%= raw Kramdown::Document.new(@article.content).to_html %>
       </div>
 
       <div class="clear">
@@ -26,7 +26,7 @@
 
       <% unless User.current.nil? %>
        <div class="article-info">
-  	<%= link_to '編集', edit_article_path(@article) %>
+        <%= link_to '編集', edit_article_path(@article) %>
        </div>
       <% end %>
 
@@ -37,9 +37,9 @@
 
     <div class="box">
       <div class="title-bar">
-	<span class="title">
-	  Comment
-	</span>
+        <span class="title">
+          Comment
+        </span>
       </div>
       <hr>
       <%= render :partial => '/comments/list_comment',:locals => {:article => @article} %>

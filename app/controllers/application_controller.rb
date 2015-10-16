@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base # :nodoc:
 
     if template.index(absolute_root) == 0
       if File.directory?(template) and /\/\z/ !~ request.fullpath
-	return redirect_to(request.fullpath + "/")
+        return redirect_to(request.fullpath + "/")
       end
 
       if /\/\z/ =~ request.fullpath

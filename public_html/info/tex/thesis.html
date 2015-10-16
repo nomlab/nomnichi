@@ -123,81 +123,81 @@ function submenu(idNam){
     </p>
     <table class="options" >
       <tbody>
-	<tr>
-	  <!-- one of (TD TH) -->
-	  <th style="background: #ccffff;">オプション名</th>
+        <tr>
+          <!-- one of (TD TH) -->
+          <th style="background: #ccffff;">オプション名</th>
 
-	  <th style="background: #ccffff;">機能</th>
-	  <th style="background: #ccffff;">利用できるクラスファイル</th>
-	</tr>
-	<tr>
-	  <!-- one of (TD TH) -->
-	  <td align="center"><code>no-colon</code></td>
-	  <td>
+          <th style="background: #ccffff;">機能</th>
+          <th style="background: #ccffff;">利用できるクラスファイル</th>
+        </tr>
+        <tr>
+          <!-- one of (TD TH) -->
+          <td align="center"><code>no-colon</code></td>
+          <td>
 
              図や表の番号と説明文との間に"<strong style="color: red;">:</strong>"を表示しません。
-		<table>
-	      <tbody>
-		<tr>
-		  <!-- one of (TD TH) -->
-		  <td>(デフォルト)</td>
-		  <td style="background-color: #eedd99;">図 1 <strong style="color: red;">:</strong> ずのせつめい</td>
+                <table>
+              <tbody>
+                <tr>
+                  <!-- one of (TD TH) -->
+                  <td>(デフォルト)</td>
+                  <td style="background-color: #eedd99;">図 1 <strong style="color: red;">:</strong> ずのせつめい</td>
 
-		</tr>
-		<tr>
-		  <!-- one of (TD TH) -->
-		  <td>(<code>no-colon</code>指定時)</td>
-		  <td style="background-color: #eedd99;">図 1 ずのせつめい</td>
-		</tr>
-	      </tbody>
+                </tr>
+                <tr>
+                  <!-- one of (TD TH) -->
+                  <td>(<code>no-colon</code>指定時)</td>
+                  <td style="background-color: #eedd99;">図 1 ずのせつめい</td>
+                </tr>
+              </tbody>
 
-	    </table>
+            </table>
           </td>
-	  <td><code>graduate1999.{cls,sty}</code> 以降。</td>
-	</tr>
-	<tr>
-	  <!-- one of (TD TH) -->
-	  <td align="center"><code>no-headfoot</code></td>
+          <td><code>graduate1999.{cls,sty}</code> 以降。</td>
+        </tr>
+        <tr>
+          <!-- one of (TD TH) -->
+          <td align="center"><code>no-headfoot</code></td>
 
-	  <td>
+          <td>
             <ul>
-	      <li>一行の行幅を狭くします。</li>
-	      <li>各ページのヘッダとフッタを出力しません。</li>
-	    </ul>
+              <li>一行の行幅を狭くします。</li>
+              <li>各ページのヘッダとフッタを出力しません。</li>
+            </ul>
             この機能は、TeX 文書をテキストファイルにするために用意したものです。
 <code>dvi2tty</code> 等と組み合わせて利用してください。
           </td>
 
-	  <td><code>graduate2000.{cls,sty}</code> 以降。</td>
-	</tr>
-	<tr>
-	  <!-- one of (TD TH) -->
-	  <td align="center"><code>tanilab-enum</code></td>
-	  <td><code>enumerate</code>環境における項番の書式を変更します。<br>
+          <td><code>graduate2000.{cls,sty}</code> 以降。</td>
+        </tr>
+        <tr>
+          <!-- one of (TD TH) -->
+          <td align="center"><code>tanilab-enum</code></td>
+          <td><code>enumerate</code>環境における項番の書式を変更します。<br>
 
-	(デフォルト)
-	<blockquote style="background-color: #eedd99;">
-	      <!-- one of (SCRIPT ADDRESS FIELDSET TABLE HR FORM BLOCKQUOTE NOSCRIPT DIV DL PRE OL UL H6 H5 H4 H3 H2 H1 P) -->
-	      <pre>
+        (デフォルト)
+        <blockquote style="background-color: #eedd99;">
+              <!-- one of (SCRIPT ADDRESS FIELDSET TABLE HR FORM BLOCKQUOTE NOSCRIPT DIV DL PRE OL UL H6 H5 H4 H3 H2 H1 P) -->
+              <pre>
 1. enumi
   (a) enumii
     i. enumiii
       A. enumiv</pre>
-	</blockquote>
-	(<code>tanilab-enum</code>指定時)
-	<blockquote style="background-color: #eedd99;">
-	      <!-- one of (SCRIPT ADDRESS FIELDSET TABLE HR FORM BLOCKQUOTE NOSCRIPT DIV DL PRE OL UL H6 H5 H4 H3 H2 H1 P) -->
+        </blockquote>
+        (<code>tanilab-enum</code>指定時)
+        <blockquote style="background-color: #eedd99;">
+              <!-- one of (SCRIPT ADDRESS FIELDSET TABLE HR FORM BLOCKQUOTE NOSCRIPT DIV DL PRE OL UL H6 H5 H4 H3 H2 H1 P) -->
 
-	      <pre>
+              <pre>
 (1) enumi
   (A) enumii
     (a) enumiii
       (i) enumiv
      (ii) enumiv</pre>
-	    </blockquote>
+            </blockquote>
           </td>
-	  <td><code>graduate2000.{cls,sty}</code>以降。</td>
-	</tr>
+          <td><code>graduate2000.{cls,sty}</code>以降。</td>
+        </tr>
       </tbody>
     </table>
 </div>
@@ -229,20 +229,20 @@ function submenu(idNam){
       <!-- one of (DD DT) -->
       <dt><span style="color: red">Tgif の利点</span></dt>
       <dd>
-	<ol>
-	  <li>UNIX マシンだけで、TeX文書と図共に作成することができるため効率が良い。</li>
-	  <li>比較的まともな PostScript を出力してくれるので、プレビューや印刷時のトラブルがほとんど無い。</li>
-	  <li>作成される EPS ファイルのファイルサイズが、PowerPoint で作成するものよりずっと小さい。(<strong style="color:red">1/10 以下</strong>)</li>
-	</ol>
+        <ol>
+          <li>UNIX マシンだけで、TeX文書と図共に作成することができるため効率が良い。</li>
+          <li>比較的まともな PostScript を出力してくれるので、プレビューや印刷時のトラブルがほとんど無い。</li>
+          <li>作成される EPS ファイルのファイルサイズが、PowerPoint で作成するものよりずっと小さい。(<strong style="color:red">1/10 以下</strong>)</li>
+        </ol>
 
-	</dd>
+        </dd>
       <dt><span style="color: red">PowerPoint の利点</span></dt>
       <dd>
-	<ol>
-	  <li>TeX 用に作成した図をそのままプレゼンテーションに使用できる。</li>
-	  <li>使い方を覚えるまでに時間がかからない。</li>
+        <ol>
+          <li>TeX 用に作成した図をそのままプレゼンテーションに使用できる。</li>
+          <li>使い方を覚えるまでに時間がかからない。</li>
 
-	</ol>
+        </ol>
       </dd>
     </dl>
     </p>
@@ -267,9 +267,9 @@ function submenu(idNam){
     <p>
     <table>
       <tbody>
-	<tr>
-	  <!-- one of (TD TH) -->
-	  <td class="example">
+        <tr>
+          <!-- one of (TD TH) -->
+          <td class="example">
 
     <pre>
 \begin{figure}[htbp]
@@ -280,7 +280,7 @@ function submenu(idNam){
  \end{center}
 \end{figure}</pre>
           </td>
-	</tr>
+        </tr>
       </tbody>
     </table>
     </p>
@@ -306,11 +306,11 @@ function submenu(idNam){
       <li><code>/usr/local/bin/convert</code> コマンドを利用する。</li>
       <li><code>/usr/local/X11/bin/xv-3.10a</code> コマンドを利用する。</li>
       <li><a href="http://www.cityfujisawa.ne.jp/~huzinami/tex/g-conv.html">jpeg2ps</a> ツールを利用する。
-	<ol>
+        <ol>
 
-	  <li>ダンプイメージを JPEG ファイルとして保存する。</li>
-	  <li><a href="http://www.cityfujisawa.ne.jp/~huzinami/tex/g-conv.html">jpeg2ps</a>を利用して EPS ファイルに変換する。(crest にインストール済み。<a href="http://www.pdflib.com/download/free-software/jpeg2ps/">ソースファイルはこちら</a>)
-	    <pre>
+          <li>ダンプイメージを JPEG ファイルとして保存する。</li>
+          <li><a href="http://www.cityfujisawa.ne.jp/~huzinami/tex/g-conv.html">jpeg2ps</a>を利用して EPS ファイルに変換する。(crest にインストール済み。<a href="http://www.pdflib.com/download/free-software/jpeg2ps/">ソースファイルはこちら</a>)
+            <pre>
 jpeg2ps V1.8: convert JPEG files to PostScript Level 2.
 (C) Thomas Merz 1994-1999
 
@@ -324,10 +324,10 @@ usage: jpeg2ps [options] jpegfile > epsfile
 -q        quiet mode: suppress all informational messages
 -r &lt;dpi&gt;  resolution value (dots per inch)
           0 means use value given in file, if any (disables autorotate)
-	    </pre>
+            </pre>
 
-	  </li>
-	</ol>
+          </li>
+        </ol>
       </li>
     </ol>
     </p>
@@ -450,7 +450,7 @@ pp.133--138,1995.
 </span>
 Hannu Nurmi, Arto Salomaa, and Lila Santean,
 ''Secret ballot elections in computer networks.'',
-Computers \&amp; Security, 36(10) pp.553-560, 1991. 
+Computers \&amp; Security, 36(10) pp.553-560, 1991.
 
 <span style="color:blue">\end{thebibliography}</span></pre>
 </td></tr></table>
