@@ -5,6 +5,9 @@
     <div class="box">
       <div class="title-bar">
         <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
+        <% unless article.approved %>
+          <%= glyphicon "eye-close" %>
+        <% end %>
       </div>
       <%= render partial: "info", locals: {article: article} %>
       <div class="clear">
