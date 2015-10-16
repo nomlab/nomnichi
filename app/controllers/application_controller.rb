@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base # :nodoc:
     template << "." + params[:format] if params[:format].present?
 
     if template.index(absolute_root) == 0
-      if File.directory?(template) and /\/\z/ !~ request.fullpath
-        return redirect_to(request.fullpath + "/")
+      if File.directory?(template) and /\/\z/ !~ request.original_fullpath
+        return redirect_to(request.original_fullpath + "/")
       end
 
-      if /\/\z/ =~ request.fullpath
+      if /\/\z/ =~ request.original_fullpath
         ['.html.erb', '.erb', '.rhtml', '.html'].each do |ext|
           if File.file?(template+'/index'+ ext)
             template = template + '/index' + ext
