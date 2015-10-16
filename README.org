@@ -21,6 +21,11 @@ $ bundle exec rake db:migrate
 $ git submodule init
 $ git submodule update
 #+END_SRC
+** 5. OmniAuthの設定
+#+BEGIN_SRC sh
+$ cp config/application_settings_sample.yml config/application_settings.yml
+$ vim config/application_settings.yml # -> set client_id, client_secret, allowed_team_id
+#+END_SRC
 
 * 利用方法
 ** 1. Rails server の立ち上げ
