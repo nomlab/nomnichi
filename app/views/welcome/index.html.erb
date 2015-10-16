@@ -40,16 +40,7 @@
     <div class="title-bar">
       <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
     </div>
-    <div class="article-info">
-      <span class="glyphicon glyphicon-eye-open"></span>
-      <%= article.count %>
-      <span class="glyphicon glyphicon-user"></span>
-      <%= article.user.ident %>
-      <span class="glyphicon glyphicon-time"></span>
-      <%= article.created_at %>
-      <span class="glyphicon glyphicon-comment"></span>
-      コメント(<%= article.comments.length %>)
-    </div>
+    <%= render partial: "articles/info", locals: {article: article} %>
     <div class="clear">
     </div>
     <div>
