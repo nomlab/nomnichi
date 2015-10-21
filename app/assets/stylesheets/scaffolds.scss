@@ -71,3 +71,14 @@ div {
     list-style: square;
   }
 }
+
+.avatar {
+  border: 0 none;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 3px;
+  float: left;
+  line-height: 0;
+  margin-right: 0.6em;
+  vertical-align: baseline;
+}
