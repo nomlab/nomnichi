@@ -17,3 +17,10 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.unclear-link, .unclear-link:hover {
+  cursor: default;
+  color: #000000;
+  text-decoration: none;
+  background: #ffffff;
+}
