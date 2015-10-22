@@ -1,35 +1,83 @@
-* Install したあとにすること
-** 1. gem をインストール
-#+BEGIN_SRC sh
-$ bundle install --path vendor/bundle
-#+END_SRC
-** 2. secret key の設定
-#+BEGIN_SRC sh
-$ bundle exec rake secret
-#+END_SRC
-上記のコマンドで生成した鍵を， config/secrets-example.yml 内の <SECRETKEY> と置換える．
-置換えたら，以下のコマンドで config/secrets-example.yml を config/secrets.yml に変更．
-#+BEGIN_SRC sh
-$ mv config/secrets-example.yml config/secrets.yml
-#+END_SRC
-** 3. 初期設定
-#+BEGIN_SRC sh
-$ bundle exec rake db:migrate
-#+END_SRC
-** 4. jquery tree view の導入
-#+BEGIN_SRC sh
-$ git submodule init
-$ git submodule update
-#+END_SRC
-** 5. OmniAuthの設定
-#+BEGIN_SRC sh
-$ cp config/application_settings_sample.yml config/application_settings.yml
-$ vim config/application_settings.yml # -> set client_id, client_secret, allowed_team_id
-#+END_SRC
+* What is nomnichi?
+  nomnichi is a Nomura Laboratory's blog system developed by Ruby on Rails.
+* Environment
+  | Ruby  | 2.2.3 |
+  | Rails | 4.2.4 |
+* Installation for developers
+  I recommend you to install new Ruby and Bundler on the top of Rbenv before install nomnichi.
 
-* 利用方法
-** 1. Rails server の立ち上げ
-#+BEGIN_SRC sh
-$ bundle exec rails s
-#+END_SRC
-上記操作後，ウェブブラウザから http://ホスト名:3000/ にアクセス
+  1) Install rbenv + ruby-build (check https://github.com/sstephenson/rbenv#basic-github-checkout for details)
+     #+BEGIN_SRC sh
+       $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+       $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+       # Edit your shell dot files to add some path and environment variables.
+     #+END_SRC
+
+  2) Install Ruby and Bundler
+     #+BEGIN_SRC sh
+       # Install ruby 2.2.3
+       $ rbenv install 2.2.3
+
+       # Installation check
+       $ rbenv global 2.2.3
+       $ ruby -v # -> You will see: ruby 2.1.5...
+
+       # Install bundler for your new Ruby
+       $ gem install bundler
+
+       # Activate bundler
+       $ rbenv rehash
+
+       # Get back to your system default Ruby if you want
+       $ rbenv global system # say, /usr/bin/ruby
+       $ ruby -v
+     #+END_SRC
+
+  3) clone nomnichi from github
+     #+BEGIN_SRC sh
+       $ git clone git@github.com:nomlab/nomnichi.git ~/Programs/nomnichi
+     #+END_SRC
+
+  4) Setup to use installed ruby
+     #+BEGIN_SRC sh
+       $ cd ~/Programs/nomnichi
+       $ rbenv local 2.2.3
+       $ ruby -v # -> You will see: ruby 2.2.3...
+     #+END_SRC
+
+  5) Install vendor/bundle stuffs
+     #+BEGIN_SRC sh
+       $ bundle install --path vendor/bundle
+     #+END_SRC
+
+  6) Setup secret key
+     #+BEGIN_SRC sh
+       $ bundle exec rake secret # -> You will see: foobarbuz... Copy the string.
+       $ cp config/secrets-example.yml config/secrets.yml
+       $ vim config/secrets.yml # -> Replace all <SECRETKEY> with the string outputted
+     #+END_SRC
+
+  7) Setup GitHub OmniAuth
+     #+BEGIN_SRC sh
+       $ cp config/application_settings_sample.yml config/application_settings.yml
+       $ vim config/application_settings.yml # -> set client_id, client_secret, allowed_team_id
+     #+END_SRC
+
+  8) Setup DB
+     #+BEGIN_SRC sh
+       $ bundle exec rake db:migrate
+       $ bundle exec rake db:migrate RAILS_ENV=production
+     #+END_SRC
+
+* Launch nomnichi Rails app
+
+** development
+   #+BEGIN_SRC sh
+     $ bundle exec rails s
+   #+END_SRC
+
+** production
+   #+BEGIN_SRC sh
+     $ bundle exec rake assets:precompile RAILS_ENV=production
+     $ bundle exec rails s -e production
+   #+END_SRC
