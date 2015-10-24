@@ -10,7 +10,7 @@ class GateController < ApplicationController
     if auth && User.current
       User.current.update_with_omniauth(auth)
       flash[:info] = "Nomnichi account is associated with #{auth["provider"]}"
-      redirect_to "/settings"
+      redirect_to root_path + "settings"
       return false
     end
 
@@ -34,7 +34,7 @@ class GateController < ApplicationController
       set_current_user(user)
 
       reset_session_expires
-      redirect_to(session[:jumpto] || '/')
+      redirect_to(session[:jumpto] || root_path)
 
     else
       flash.now[:danger] = "Invalid user/passwd."
@@ -47,6 +47,6 @@ class GateController < ApplicationController
     reset_current_user
     flash[:info] = "User #{user.ident} logged out."
     reset_session
-    redirect_to "/"
+    redirect_to root_path
   end
 end

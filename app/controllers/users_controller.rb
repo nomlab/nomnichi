@@ -46,13 +46,13 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         format.html {
           flash[:info] = 'Successfully updated.'
-          redirect_to "/settings"
+          redirect_to root_path + "settings"
         }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html {
           flash[:danger] = 'Updating was failed.'
-          render "/settings"
+          render root_path + "settings"
         }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -73,13 +73,13 @@ class UsersController < ApplicationController
   def change_password
     unless User.authenticate(@user.ident, params[:old_password]) == User.current
       flash[:danger] = 'Old password is wrong.'
-      redirect_to "/settings"
+      redirect_to root_path + "settings"
       return false
     end
 
     unless params[:new_password] == params[:password_for_confirming]
       flash[:danger] = 'Password does not match the confirmation'
-      redirect_to "/settings"
+      redirect_to root_path + "settings"
       return false
     end
 
@@ -89,10 +89,10 @@ class UsersController < ApplicationController
 
     if @user.update(password: encrypted_password, salt: salt)
       flash[:info] = 'Successfully updated.'
-      redirect_to "/settings"
+      redirect_to root_path + "settings"
     else
       flash[:danger] = 'Updating was failed.'
-      render "/settings"
+      render root_path + "settings"
     end
   end
 
