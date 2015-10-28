@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :change_password]
   before_filter :authenticate
+  skip_before_filter :is_user_named?
 
   # GET /users
   # GET /users.json
@@ -46,13 +47,13 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         format.html {
           flash[:info] = 'Successfully updated.'
-          redirect_to root_path + "settings"
+          render :edit
         }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html {
           flash[:danger] = 'Updating was failed.'
-          render root_path + "settings"
+          render :edit
         }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

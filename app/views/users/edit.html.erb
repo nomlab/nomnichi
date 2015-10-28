@@ -3,9 +3,9 @@
   <div class="box setting-box">
     <h2>Change ident</h2>
     <%= form_tag root_path + "users/#{@user.id}", {method: :put} do %>
-      <label>ident</label>
+      <label>nickname</label>
       <%= text_field :user, :ident, class: "form-control" %>
-      <%= button_tag "Change ident", class: "btn btn-default" %>
+      <%= button_tag "Change nickname", class: "btn btn-default" %>
     <% end %>
   </div>
   <div class="box">
@@ -22,7 +22,7 @@
   </div>
   <div class="box">
     <h2>Setting OmniAuth</h2>
-    <% unless @user.uid %>
+    <% unless @user.is_associated? %>
       <%= button_to "Associate with GitHub", root_path + "auth/github", class: "btn btn-default" %>
     <% else %>
       Your account is already associated with GitHub.

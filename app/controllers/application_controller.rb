@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base # :nodoc:
   # scope_parameter_logging :password
   prepend_before_filter :login_state_setup
   before_filter :authenticate, except: :rescue_404
+  before_filter :is_user_named?, except: :rescue_404
 
   def rescue_404
     absolute_root = File.join(File.expand_path(Rails.root), '')
@@ -84,6 +85,14 @@ class ApplicationController < ActionController::Base # :nodoc:
 
     session[:jumpto] = request.parameters
     redirect_to :controller => "gate", :action => "login"
+    return false
+  end
+
+  def is_user_named?
+    return true if User.current.nil? || User.current.ident
+
+    flash[:warning] = "Set up your nickname."
+    redirect_to :controller => "users", :action => "edit"
     return false
   end
 

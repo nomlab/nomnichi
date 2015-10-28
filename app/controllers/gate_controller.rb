@@ -1,51 +1,52 @@
 class GateController < ApplicationController
   skip_before_filter :authenticate
 
-  def index
-  end
-
   def login
-    # Associate with provider account
-    auth = request.env["omniauth.auth"]
-    if auth && User.current
-      User.current.update_with_omniauth(auth)
-      flash[:info] = "Nomnichi account is associated with #{auth["provider"]}"
-      redirect_to root_path + "settings"
+    return false if request.method_symbol == :get
+
+    unless user = User.authenticate(params[:ident], params[:password])
+      flash[:warning] = "Nickname and/or password are/is wrong."
       return false
     end
 
-    # Omni Auth
-    if auth
-      unless auth.credentials.active_member?
-        render text: "Unauthorized", status: 401
-        return false
-      end
+    set_current_user(user)
+    redirect_to(session[:jumpto] || '/')
+  end
 
-      user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) ||
-             User.create_with_omniauth(auth)
+  def omniauth
+    auth = request.env["omniauth.auth"]
 
-    # BASIC authentication
-    else
-      user = User.authenticate(params[:ident], params[:password])
+    unless auth.credentials.active_member?
+      flash[:warning] = "Your account is unauthorized."
+      render action: :login, status: 401
+      return false
     end
 
-    if user
-      flash[:info] = "User #{user.ident} logged in."
+    if user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
+      flash[:info] = "#{user.ident} logged in."
       set_current_user(user)
-
       reset_session_expires
       redirect_to(session[:jumpto] || root_path)
-
-    else
-      flash.now[:danger] = "Invalid user/passwd."
-      reset_current_user
+      return true
     end
+
+    if user = User.current
+      flash[:info] = "Your account was assoiciated with GitHub."
+      user.update_with_omniauth(auth)
+      redirect_to controller: :users, action: :edit
+      return true
+    end
+
+    restricted_user = User.create_with_omniauth(auth)
+    flash[:info] = "Set up your nickname."
+    set_current_user(restricted_user)
+    redirect_to controller: :users, action: :edit
   end
 
   def logout
-    user = User.current
+    flash[:info] = "User #{User.current.ident} logged out."
     reset_current_user
-    flash[:info] = "User #{user.ident} logged out."
+
     reset_session
     redirect_to root_path
   end
