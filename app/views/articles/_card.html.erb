@@ -2,7 +2,7 @@
   <div class="title-bar">
     <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
     <% unless article.approved %>
-      <%= glyphicon "eye-close" %>
+      <%= fa_icon "lock", class: "title" %>      
     <% end %>
   </div>
   <%= render partial: "articles/info", locals: {article: article} %>

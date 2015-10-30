@@ -60,3 +60,4 @@ gem "settingslogic"
 
 gem 'jquery-treeview-rails', github: 'ikeda-yuko/jquery-treeview-rails', branch: 'master'
 
+gem "font-awesome-rails"
