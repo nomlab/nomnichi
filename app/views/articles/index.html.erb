@@ -5,7 +5,3 @@
   </div>
   <%= render :partial => 'side_bar', :locals => {:articles => @article_all, :comments => @comments }%>
 </div>
-
-<% unless User.current.nil? %>
- <%= link_to 'New Article', new_article_path %>
-<% end %>
