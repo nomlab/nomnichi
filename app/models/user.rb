@@ -30,7 +30,10 @@ class User < ActiveRecord::Base
     create! do |user|
       user.provider = auth["provider"]
       user.uid      = auth["uid"]
-      user.ident    = auth["info"]["nickname"]
+
+      info = auth["info"]
+      user.ident      = info["nickname"]
+      user.avatar_url = info["image"]
     end
   end
 
@@ -44,8 +47,9 @@ class User < ActiveRecord::Base
 
   def update_with_omniauth(auth)
     update!(
-      provider: auth["provider"],
-      uid:      auth["uid"]
+      provider:   auth["provider"],
+      uid:        auth["uid"],
+      avatar_url: auth["info"]["image"]
     )
   end
 end
