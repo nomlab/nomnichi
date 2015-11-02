@@ -6,4 +6,7 @@
     <%= render partial: "card", collection: @articles, as: :article %>
   </div>
   <%= render :partial => 'side_bar', :locals => {:articles => @article_all, :comments => @comments }%>
+  <div class="col-md-9 text-center">
+    <%= paginate @articles %>
+  </div>
 </div>
