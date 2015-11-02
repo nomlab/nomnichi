@@ -2,7 +2,7 @@
   <h1>Account Settings</h1>
   <div class="box setting-box">
     <h2>Change ident</h2>
-    <%= form_tag "/users/#{@user.id}", {method: :put} do %>
+    <%= form_tag root_path + "users/#{@user.id}", {method: :put} do %>
       <label>ident</label>
       <%= text_field :user, :ident, class: "form-control" %>
       <%= button_tag "Change ident", class: "btn btn-default" %>
@@ -10,7 +10,7 @@
   </div>
   <div class="box">
     <h2>Change password</h2>
-    <%= form_tag "/users/#{@user.id}/change_password", method: :put do %>
+    <%= form_tag root_path + "users/#{@user.id}/change_password", method: :put do %>
       <label>Old password (OmniAuth default: blank)</label>
       <input type="password" class="form-control" name="old_password">
       <label>New password</label>
@@ -23,7 +23,7 @@
   <div class="box">
     <h2>Setting OmniAuth</h2>
     <% unless @user.uid %>
-      <%= button_to "Associate with GitHub", "/auth/github", class: "btn btn-default" %>
+      <%= button_to "Associate with GitHub", root_path + "auth/github", class: "btn btn-default" %>
     <% else %>
       Your account is already associated with GitHub.
     <% end %>

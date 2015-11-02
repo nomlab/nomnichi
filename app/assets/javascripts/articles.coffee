@@ -6,7 +6,7 @@ setupRenderPreviewButton = (selector) ->
     $. ajax
       async:     true
       type:      "POST"
-      url:       "/articles/preview"
+      url:       rootPath + "articles/preview"
       dataType:  "html"
       data:
         article:
