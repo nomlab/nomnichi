@@ -25,3 +25,45 @@
   text-decoration: none;
   background: #ffffff;
 }
+
+.home{
+    padding: 1em;
+}
+
+.toplabel {
+    background: rgba(0, 0, 0, 0) -moz-linear-gradient(left center , #696969, #f5f5f5) repeat scroll 0 0;
+    margin: -16px -16px 0;
+    padding: 1px 0 0 10px;
+}
+
+h1.contents-title {
+    color: #fff;
+    font-size: 26px;
+    margin: 5px 0;
+}
+
+.title-bar {
+    border-color: gray;
+    border-style: solid;
+    border-width: 0 0 1px 10px;
+    float: left;
+    margin: 5px 0 5px;
+    padding: 0 0 0 10px;
+    width: 100%;
+}
+
+h2.title {
+    color: gray;
+    font-size: 150%;
+    font-weight: bold;
+    margin: 0;
+}
+
+h3.title {
+    margin: 15px 0 15px;
+    font-size: 125%;
+}
+
+img {
+    margin: 13px 0 13px;
+}
