@@ -1,12 +1,21 @@
 <div class="row">
-  <div class="col-md-9 text-center">
+  <div class="col-md-9 col-sm-8 text-center">
     <%= paginate @articles %>
   </div>
-  <div class="col-md-9">
+</div>
+<div class="row row-offcanvas row-offcanvas-right">
+  <div class="col-md-9 col-sm-8">
     <%= render partial: "card", collection: @articles, as: :article %>
   </div>
-  <%= render :partial => 'side_bar', :locals => {:articles => @article_all, :comments => @comments }%>
+  <div class="col-md-3 col-sm-4 sidebar-offcanvas" id="offcanvas-side-bar">
+    <%= render :partial => 'side_bar', :locals => {:articles => @article_all, :comments => @comments } %>
+  </div>
   <div class="col-md-9 text-center">
     <%= paginate @articles %>
+  </div>
+  <div class="pull-right visible-xs" id="side-bar-open-button">
+    <button class="btn btn-default btn-xs" data-toggle="offcanvas" data-target="#offcanvas-side-bar">
+      <%= fa_icon "arrow-left" %> Side menu
+    </button>
   </div>
 </div>

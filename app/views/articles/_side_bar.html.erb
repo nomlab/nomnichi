@@ -1,39 +1,37 @@
-<div class="col-md-3 hidden-sm hidden-xs">
-  <div class="side_bar">
-    <% unless User.current.nil? %>
-      <%= link_to new_article_path, class: 'create-article-link' do %>
-        <%= fa_icon "plus" %> Create Article
-      <% end %>
+<div class="side_bar">
+  <% unless User.current.nil? %>
+    <%= link_to new_article_path, class: 'create-article-link' do %>
+      <%= fa_icon "plus" %> Create Article
     <% end %>
-    <h5 class="side-title">Search</h5>
-    <hr class="border">
-    <%= form_tag '/articles/search', class: "input-group", method: 'GET' do %>
-      <%= text_field_tag :query, nil, class: "form-control" %>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">
-          <%= glyphicon "search" %>
-        </button>
-      </span>
+  <% end %>
+  <h5 class="side-title">Search</h5>
+  <hr class="border">
+  <%= form_tag '/articles/search', class: "input-group", method: 'GET' do %>
+    <%= text_field_tag :query, nil, class: "form-control" %>
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <%= glyphicon "search" %>
+      </button>
+    </span>
+  <% end %>
+  <h5 class="side-title">Comment</h5>
+  <hr class="border">
+  <% comments.each do |comment| %>
+    <p class="comment-article-title"><%= link_to_article_by_perma_link(comment.article.title, comment.article) %></p>
+    <p class="comment-body">> <%= fold_comment(comment.body) %></p>
+    <p class="comment-name">by <%= comment.user.ident %></p>
+  <% end %>
+  <h5 class="side-title">Archives</h5>
+  <hr class="border">
+  <ul class="yearly">
+    <% list_year_archives(articles).each do |year| %>
+      <li><%= link_to "#{year[:year]}年度(#{year[:item]})", controller: "articles", action: "archive", year: year[:year]%>
+        <ul>
+          <% year[:month].each do |month| %>
+            <li><%= link_to("#{month[:month]}月(#{month[:item]})", controller: "articles", action: "archive", year: year[:year], month: month[:month]) %></li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
-    <h5 class="side-title">Comment</h5>
-    <hr class="border">
-    <% comments.each do |comment| %>
-      <p class="comment-article-title"><%= link_to_article_by_perma_link(comment.article.title, comment.article) %></p>
-      <p class="comment-body">> <%= fold_comment(comment.body) %></p>
-      <p class="comment-name">by <%= comment.user.ident %></p>
-    <% end %>
-    <h5 class="side-title">Archives</h5>
-    <hr class="border">
-    <ul class="yearly">
-      <% list_year_archives(articles).each do |year| %>
-        <li><%= link_to "#{year[:year]}年度(#{year[:item]})", controller: "articles", action: "archive", year: year[:year]%>
-          <ul>
-            <% year[:month].each do |month| %>
-              <li><%= link_to("#{month[:month]}月(#{month[:item]})", controller: "articles", action: "archive", year: year[:year], month: month[:month]) %></li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  </ul>
 </div>
