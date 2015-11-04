@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate, except: [:index, :show, :search]
   before_action :set_article, only: [:edit, :update, :destroy]
+  before_action :set_parameters_for_sidebar, only: [:index, :search]
   before_action :set_article_by_perma_link, only: [:show]
   before_action :count_up, only: [:show]
 
@@ -11,23 +12,21 @@ class ArticlesController < ApplicationController
       if params[:start] && params[:end]
         articles = Article.where("created_at >= ? and created_at <= ?",
                                  DateTime.parse(params[:start]),
-                                 DateTime.parse(params[:end])).page(params[:page])
+                                 DateTime.parse(params[:end]))
       else
-        articles = Article.all.page(params[:page])
+        articles = Article.all
       end
     else
       if params[:start] && params[:end]
         articles = Article.where("approved = ? and created_at >= ? and created_at <= ?",
                                  true,
                                  DateTime.parse(params[:start]),
-                                 DateTime.parse(params[:end])).page(params[:page])
+                                 DateTime.parse(params[:end]))
       else
-        articles = Article.where("approved = ?",true).page(params[:page])
+        articles = Article.where("approved = ?",true)
       end
     end
-    @articles = articles.order("created_at desc")
-    @article_all = Article.all.order("created_at desc")
-    @comments = Comment.all.order("created_at desc").slice(0..4)
+    @articles = articles.page(params[:page])
   end
 
   # GET /articles/1
@@ -122,9 +121,7 @@ class ArticlesController < ApplicationController
                                  "%#{params[:query]}%")
       end
     end
-    @articles = articles.order("created_at desc").page(params[:page])
-    @comments = Comment.all.order("created_at desc").slice(0..4)
-    @article_all = Article.all.order("created_at desc")
+    @articles = articles.page(params[:page])
     respond_to do |format|
       format.html { render action: "index" }
     end
@@ -138,6 +135,11 @@ class ArticlesController < ApplicationController
 
   def set_article_by_perma_link
     @article = Article.find_by(perma_link: params[:perma_link])
+  end
+
+  def set_parameters_for_sidebar
+    @article_all = Article.all
+    @comments = Comment.all.order("created_at desc").slice(0..4)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

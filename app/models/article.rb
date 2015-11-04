@@ -7,4 +7,6 @@ class Article < ActiveRecord::Base
   validates :perma_link, presence: true, uniqueness: true
 
   paginates_per 10
+
+  default_scope { order("created_at desc") }
 end
