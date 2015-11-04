@@ -49,7 +49,11 @@
   <div class="field form-group">
     <div class="tab-content">
       <div class="tab-pane active" id="write" role="tabpanel">
-        <%= f.text_area :content, :rows => 20, :wrap => :off %>
+	<% if controller.action_name == "new" %>
+	 <%= f.text_area :content, :rows => 20, :wrap => :off, :value => "<!-- folding -->" %>
+	<% else %>
+	 <%= f.text_area :content, :rows => 20, :wrap => :off %>
+	<% end %>
       </div>
       <div class="tab-pane preview_area" id="preview" role="tabpanel">
       </div>
