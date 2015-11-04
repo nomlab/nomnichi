@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate, except: [:index, :show]
+  before_filter :authenticate, except: [:index, :show, :search]
   before_action :set_article, only: [:edit, :update, :destroy]
   before_action :set_article_by_perma_link, only: [:show]
   before_action :count_up, only: [:show]
@@ -105,6 +105,29 @@ class ArticlesController < ApplicationController
       format.html { redirect_to action: :index, start: start_time, end: end_time}
     end
 
+  end
+
+  def search
+    if User.current
+      if params[:query]
+        articles = Article.where("title LIKE ? or content LIKE ?",
+                                 "%#{params[:query]}%",
+                                 "%#{params[:query]}%")
+      end
+    else
+      if params[:query]
+        articles = Article.where("approved = ? and (title LIKE ? or content LIKE ?)",
+                                 true,
+                                 "%#{params[:query]}%",
+                                 "%#{params[:query]}%")
+      end
+    end
+    @articles = articles.order("created_at desc").page(params[:page])
+    @comments = Comment.all.order("created_at desc").slice(0..4)
+    @article_all = Article.all.order("created_at desc")
+    respond_to do |format|
+      format.html { render action: "index" }
+    end
   end
 
   private

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   post 'articles/preview', to: 'articles#preview'
   resources :articles, except: :show
+  get 'articles/search'
   get 'articles/:perma_link', to: 'articles#show'
   get 'articles/archive/:year(/:month)', to: 'articles#archive'
   resources :comments
