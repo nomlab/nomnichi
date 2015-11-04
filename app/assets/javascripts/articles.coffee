@@ -10,6 +10,7 @@ setupRenderPreviewButton = (selector) ->
       dataType:  "html"
       data:
         article:
+          title: title
           content: content
       success: (html, status, xhr) ->
         previewArea.empty()

@@ -86,7 +86,15 @@ class ArticlesController < ApplicationController
   end
 
   def preview
-    render text: Kramdown::Document.new(article_params[:content]).to_html
+    title =
+      """
+      <div class='title-bar'>
+        <span class='title'>
+          #{article_params[:title]}
+        </span>
+      </div>
+      """
+    render text: title + Kramdown::Document.new(article_params[:content]).to_html
   end
 
   def archive
