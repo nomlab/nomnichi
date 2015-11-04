@@ -1,5 +1,7 @@
 <div class="row">
-  <%= paginate @articles %>
+  <div class="col-md-9 text-center">
+    <%= paginate @articles %>
+  </div>
   <div class="col-md-9">
     <%= render partial: "card", collection: @articles, as: :article %>
   </div>
