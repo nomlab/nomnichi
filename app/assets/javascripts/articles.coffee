@@ -16,7 +16,7 @@ setupRenderPreviewButton = (selector) ->
         previewArea.append(html)
 
 ready = ->
-  setupRenderPreviewButton('#preview')
+  setupRenderPreviewButton('#preview-tab')
   $('.yearly').treeview(
     collapsed: true
     hoverClass: "archive-hover"

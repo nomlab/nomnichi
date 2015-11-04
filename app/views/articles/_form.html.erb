@@ -13,36 +13,48 @@
 
   <%= f.hidden_field :user_id, value: @article.user_id || User.current.id %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <%= f.hidden_field :perma_link, value: @article.perma_link || User.current.ident + "-" + Time.now.to_s(:perma_link) %>
 
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
     <%= f.label :published_on %><br>
     <%= f.datetime_select :published_on %>
   </div>
+
   <div class="field">
-    <%= f.label :approved %><br>
+    <%= f.label :approved %>
     <%= f.check_box :approved %>
+  </div>
+
+  <div class="field">
+    <%= f.label :promote_headline %>
+    <%= f.check_box :promote_headline %>
   </div>
 
   <%= f.hidden_field :count %>
 
-  <div class="field">
-    <%= f.label :promote_headline %><br>
-    <%= f.check_box :promote_headline %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-    <a id="preview">Preview</a>
-  </div>
-<% end %>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active" role="presentation">
+      <a aria-controls="write" data-toggle="tab" href="#write" id="write-tab" role="tab">Write</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="preview" data-toggle="tab" href="#preview" id="preview-tab" role="tab">Preview</a>
+    </li>
+  </ul>
 
-<div class="preview_area"></div>
+  <div class="field form-group">
+    <div class="tab-content">
+      <div class="tab-pane active" id="write" role="tabpanel">
+        <%= f.text_area :content, :rows => 20, :wrap => :off %>
+      </div>
+      <div class="tab-pane preview_area" id="preview" role="tabpanel">
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit class: 'btn btn-default' %>
+<% end %>
