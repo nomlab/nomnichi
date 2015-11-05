@@ -5,12 +5,17 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
   </head>
   <body>
     <div class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">nomlab</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <%= fa_icon "bars" %>
+          </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
