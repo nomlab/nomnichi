@@ -37,6 +37,10 @@ class GateController < ApplicationController
       redirect_to controller: :users, action: :edit
       return true
     end
+
+    set_omniauth_info(auth)
+    flash[:info] = "Create nomnichi user."
+    redirect_to controller: :users, action: :new
   end
 
   def logout
