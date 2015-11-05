@@ -103,6 +103,16 @@ class ApplicationController < ActionController::Base # :nodoc:
     session[:avatar_url] = auth["info"]["image"]
   end
 
+  def restore_omniauth_info
+    auth = {}
+    auth["info"] = {}
+
+    auth["provider"]      = session[:provider]
+    auth["uid"]           = session[:uid]
+    auth["info"]["image"] = session[:avatar_url]
+    return auth
+  end
+
   def authenticate_with_omniauth
     return true if session[:provider] && session[:uid] && session[:avatar_url]
 
