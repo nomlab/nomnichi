@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :ident
 
-  validates_format_of :ident, :with => /\A[a-zA-Z\d]+(-[a-zA-Z\d]+)*\z/
-
   def self.current=(user)
     @current_user = user
   end
@@ -51,5 +49,9 @@ class User < ActiveRecord::Base
       uid:        auth["uid"],
       avatar_url: auth["info"]["image"]
     )
+  end
+
+  def is_associated?
+    provider && uid
   end
 end
