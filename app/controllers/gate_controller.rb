@@ -10,7 +10,7 @@ class GateController < ApplicationController
     end
 
     set_current_user(user)
-    redirect_to(session[:jumpto] || '/')
+    redirect_to(session[:jumpto] || root_path)
   end
 
   def omniauth
