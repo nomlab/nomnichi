@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   require "digest/sha1"
 
+  validates_presence_of :ident
   validates_uniqueness_of :ident
 
   def self.current=(user)
