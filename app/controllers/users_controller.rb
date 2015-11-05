@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :change_password]
-  before_filter :authenticate
+  before_filter :authenticate, except: :new
+  before_filter :authenticate_with_omniauth, only: :new
 
   # GET /users
   # GET /users.json

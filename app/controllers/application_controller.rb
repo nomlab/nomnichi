@@ -97,6 +97,20 @@ class ApplicationController < ActionController::Base # :nodoc:
     User.current = nil
   end
 
+  def set_omniauth_info(auth)
+    session[:provider]   = auth["provider"]
+    session[:uid]        = auth["uid"]
+    session[:avatar_url] = auth["info"]["image"]
+  end
+
+  def authenticate_with_omniauth
+    return true if session[:provider] && session[:uid] && session[:avatar_url]
+
+    flash[:warning] = "User not omniauthed cannot create user."
+    redirect_to root_path
+    return false
+  end
+
   def reset_session_expires
     Rails.application.config.session_options[:session_expires] = 1.month.from_now
   end
