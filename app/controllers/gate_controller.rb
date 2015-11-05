@@ -24,6 +24,7 @@ class GateController < ApplicationController
 
     if user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
       flash[:info] = "#{user.ident} logged in."
+      user.update_with_omniauth(auth)
       set_current_user(user)
       reset_session_expires
       redirect_to(session[:jumpto] || root_path)
