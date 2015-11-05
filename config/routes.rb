@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  get 'nomnichi', to: 'articles#index'
   post 'articles/preview', to: 'articles#preview'
   resources :articles, except: :show
   get 'articles/search'
