@@ -36,11 +36,6 @@ class GateController < ApplicationController
       redirect_to controller: :users, action: :edit
       return true
     end
-
-    restricted_user = User.create_with_omniauth(auth)
-    flash[:info] = "Set up your nickname."
-    set_current_user(restricted_user)
-    redirect_to controller: :users, action: :edit
   end
 
   def logout

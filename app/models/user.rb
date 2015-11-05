@@ -21,20 +21,6 @@ class User < ActiveRecord::Base
     return where(["ident=? AND password=?", ident, pass_sha]).first
   end
 
-  # Omniauth-github has these info:
-  #   https://github.com/intridea/omniauth-github/blob/master/lib/omniauth/strategies/github.rb
-  #
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth["provider"]
-      user.uid      = auth["uid"]
-
-      info = auth["info"]
-      user.ident      = info["nickname"]
-      user.avatar_url = info["image"]
-    end
-  end
-
   def self.generate_salt
     Time.now.to_s
   end
@@ -43,6 +29,9 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(salt + unencrypted_password)
   end
 
+  # Omniauth-github has these info:
+  #   https://github.com/intridea/omniauth-github/blob/master/lib/omniauth/strategies/github.rb
+  #
   def update_with_omniauth(auth)
     update!(
       provider:   auth["provider"],
