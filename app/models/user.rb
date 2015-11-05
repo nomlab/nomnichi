@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   def self.authenticate(ident, password)
     user = find_by("ident = ?", ident)
     return false if user.nil?
+    return false unless user.is_able_to_password_authenticate?
     pass_sha = Digest::SHA1.hexdigest(user.salt + password)
     return where(["ident=? AND password=?", ident, pass_sha]).first
   end
@@ -42,5 +43,9 @@ class User < ActiveRecord::Base
 
   def is_associated?
     provider && uid
+  end
+
+  def is_able_to_password_authenticate?
+    password && salt
   end
 end
