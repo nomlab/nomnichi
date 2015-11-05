@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base # :nodoc:
     return true if session[:provider] && session[:uid] && session[:avatar_url]
 
     flash[:warning] = "User not omniauthed cannot create user."
-    redirect_to root_path
+    redirect_to :controller => "gate", :action => "login"
     return false
   end
 
