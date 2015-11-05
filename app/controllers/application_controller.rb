@@ -103,6 +103,12 @@ class ApplicationController < ActionController::Base # :nodoc:
     session[:avatar_url] = auth["info"]["image"]
   end
 
+  def reset_omniauth_info
+    session[:provider]   = nil
+    session[:uid]        = nil
+    session[:avatar_url] = nil
+  end
+
   def restore_omniauth_info
     auth = {}
     auth["info"] = {}

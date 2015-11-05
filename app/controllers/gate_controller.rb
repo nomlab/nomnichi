@@ -46,6 +46,7 @@ class GateController < ApplicationController
   def logout
     flash[:info] = "User #{User.current.ident} logged out."
     reset_current_user
+    reset_omniauth_info
 
     reset_session
     redirect_to root_path
