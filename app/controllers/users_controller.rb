@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :change_password]
   before_filter :authenticate
-  skip_before_filter :is_user_named?
 
   # GET /users
   # GET /users.json
