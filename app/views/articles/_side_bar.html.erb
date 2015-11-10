@@ -1,13 +1,15 @@
 <div class="side_bar">
   <h5 class="side-title">Search</h5>
   <hr class="border">
-  <%= form_tag '/articles/search', class: "input-group", method: 'GET' do %>
-    <%= text_field_tag :query, nil, class: "form-control" %>
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="submit">
-        <%= glyphicon "search" %>
-      </button>
-    </span>
+  <%= form_tag '/articles/search', method: 'GET' do %>
+    <div class="input-group" id="search-article">
+      <%= text_field_tag :query, nil, class: "form-control" %>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+          <%= glyphicon "search" %>
+        </button>
+      </span>
+    </div>
   <% end %>
   <h5 class="side-title">Comment</h5>
   <hr class="border">
