@@ -93,7 +93,8 @@ class ArticlesController < ApplicationController
         </span>
       </div>
       """
-    render text: title + Kramdown::Document.new(article_params[:content]).to_html
+    clear = "<div class='clear'></div>"
+    render text: title + Kramdown::Document.new(article_params[:content]).to_html + clear
   end
 
   def archive
