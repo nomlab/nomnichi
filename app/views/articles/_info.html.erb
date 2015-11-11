@@ -4,7 +4,7 @@
   <%= glyphicon "user" %>
   <%= article.user.ident %>
   <%= glyphicon "time" %>
-  <%= article.created_at %>
+  <%= article.created_at.to_s(:date) %>
   <%= glyphicon "comment" %>
   <%= article.comments.length %>
 </div>
