@@ -11,7 +11,7 @@
     <div class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">nomlab</a>
+          <%= link_to "nomlab", root_path, :class => "navbar-brand" %>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <%= fa_icon "bars" %>
@@ -19,9 +19,6 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li>
-              <%= link_to "トップページ", root_path %>
-            </li>
             <li>
               <%= link_to "構成員", root_path + "members.html" %>
             </li>
