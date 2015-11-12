@@ -21,6 +21,17 @@
 
 @import "offcanvas";
 
+a {
+  color: #777777;
+}
+a:hover {
+  color: #000000;
+  background: #ffffff;
+}
+a:visited {
+  color: #555555;
+}
+
 .unclear-link, .unclear-link:hover {
   cursor: default;
   color: #000000;
