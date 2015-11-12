@@ -1,8 +1,8 @@
 <div class="box">
-  <div class="title-bar">
+  <div class="<%= article.approved ? "title-bar" : "private-title-bar" %>" >
     <%= link_to_article_by_perma_link(article.title, article, {class: "title"}) %>
     <% unless article.approved %>
-      <%= fa_icon "lock", class: "title" %>
+      <%= fa_icon "lock", class: "private title" %>
     <% end %>
   </div>
   <%= render partial: "articles/info", locals: {article: article} %>
