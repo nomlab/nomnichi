@@ -75,6 +75,11 @@
     border-radius: 5px;
 }
 
+#preview {
+  min-height: 400px;
+}
+
+
 #side-bar-open-button{
     position: fixed;
     right: 16px;
@@ -89,19 +94,4 @@
 .private-title-header {
     @extend .private;
     @extend .title-header;
-}
-
-div.content img {
-  max-width: 100%;
-  height: auto;
-
-  @media (max-width: $screen-xs-min) {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (min-width: $screen-xs-min) {
-    max-width: $screen-xs-min - 90px;
-  }
 }

@@ -41,6 +41,7 @@ class ArticlesController < ApplicationController
     @article.content = "<!-- folding -->"
     @article.perma_link = User.current.ident + "-" + Time.now.to_s(:perma_link)
     @article.user_id = User.current.id
+    @article.published_on = Time.now
   end
 
   # GET /articles/1/edit

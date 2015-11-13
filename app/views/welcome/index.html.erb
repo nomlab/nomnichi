@@ -4,39 +4,29 @@
     <%= image_tag "comu_syimbol.png", width: 80 %>
     <!-- </a> -->
   </div>
-    <h1>
-      <span class="topbelong">岡山大学大学院 自然科学研究科 産業創成工学専攻</span>
-      <br>
-      <span class="topname">計算機科学講座(乃村研究室)</span>
-    </h1>
+  <h1>
+    <span class="topbelong">岡山大学大学院 自然科学研究科 産業創成工学専攻</span>
+    <br>
+    <span class="topname">計算機科学講座(乃村研究室)</span>
+  </h1>
 </div>
 
-<div class="home">
-  <div class="toplabel">
-    <h1 class="contents-title"> 研究室概要</h2>
-  </div>
-  <p></p>
+<h1 class="contents-title">研究室概要</h2>
+<p>
   我々の研究室では， グループウェアとネットワークサービスの研究開発と， それらを通したソフトウェア開発の面白さを実践的に 習得することを目的としています．
-  <p></p>
   また，オペレーティングシステム(OS)とその周辺についての 研究開発と，それらを通じた計算機そのものへの 深い理解を得ることも目的としています．
-  <p></p>
   研究室の学生は，以下のプロジェクトのいずれかに 所属して研究開発を進めています．
-  <ul>
-    <li>グループウェアとネットワークサービスグループ(GN)</li>
-    <li>新しいOSに関する研究開発グループ(New)</li>
-  </ul>
-  <dl>
-    <dt>[キーワード]</dt>
-    <dd>グループウェア，分散処理，計算機ネットワーク，オペレーティングシステム</dd>
-  </dl>
-</div>
-<div class="home">
-  <div class="toplabel">
-    <h1 class="contents-title"> ノムニチ注目記事</h1>
-  </div>
-  <p></p>
-  <%= render partial: "articles/card", collection: @headline, as: :article %>
-  <%= link_to articles_path do %>
-    <%= fa_icon "newspaper-o" %> More Articles
-  <% end %>
-</div>
+</p>
+<ul>
+  <li>グループウェアとネットワークサービスグループ(GN)</li>
+  <li>新しいOSに関する研究開発グループ(New)</li>
+</ul>
+<dl>
+  <dt>[キーワード]</dt>
+  <dd>グループウェア，分散処理，計算機ネットワーク，オペレーティングシステム</dd>
+</dl>
+<h1 class="contents-title">ノムニチ注目記事</h1>
+<%= render partial: "articles/card", collection: @headline, as: :article %>
+<%= link_to articles_path do %>
+  <%= fa_icon "newspaper-o" %> More Articles
+<% end %>
