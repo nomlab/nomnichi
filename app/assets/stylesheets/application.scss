@@ -65,16 +65,6 @@ h1.contents-title {
     width: 100%;
 }
 
-.private {
-    border-color: #ff9933;
-    color: #ff9933;
-}
-
-.private-title-bar {
-    @extend .private;
-    @extend .title-bar;
-}
-
 h2.title {
     color: gray;
     font-size: 150%;
