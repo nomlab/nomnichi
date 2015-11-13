@@ -77,7 +77,13 @@ h3.title {
 }
 
 .topimg{
-    float: left;
+  float: left;
+
+    img {
+      width: 80px !important;
+      max-width: 80px !important;
+      min-width: 80px !important;
+  }
 }
 
 .topbelong{
@@ -102,7 +108,6 @@ iframe {
     max-width: $screen-sm-min - 10px;
   }
 }
-
 
 .main-content img{
   max-width: 100%;
