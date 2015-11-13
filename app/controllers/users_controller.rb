@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :change_password]
-  before_filter :authenticate
-  skip_before_filter :is_user_named?
+  before_filter :authenticate, except: [:new, :create]
+  before_filter :authenticate_with_omniauth, only: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -29,9 +29,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+    auth = restore_omniauth_info
+    @user.update_with_omniauth(auth)
+
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        set_current_user(@user)
+        format.html {
+          flash[:info] = 'User was successfully created.'
+          redirect_to root_path
+        }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -72,12 +79,6 @@ class UsersController < ApplicationController
 
   # POST /users/1/change_password
   def change_password
-    unless User.authenticate(@user.ident, params[:old_password]) == User.current
-      flash[:danger] = 'Old password is wrong.'
-      redirect_to root_path + "settings"
-      return false
-    end
-
     unless params[:new_password] == params[:password_for_confirming]
       flash[:danger] = 'Password does not match the confirmation'
       redirect_to root_path + "settings"

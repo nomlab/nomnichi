@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base # :nodoc:
   # scope_parameter_logging :password
   prepend_before_filter :login_state_setup
   before_filter :authenticate, except: :rescue_404
-  before_filter :is_user_named?, except: :rescue_404
 
   def rescue_404
     absolute_root = File.join(File.expand_path(Rails.root), '')
@@ -88,14 +87,6 @@ class ApplicationController < ActionController::Base # :nodoc:
     return false
   end
 
-  def is_user_named?
-    return true if User.current.nil? || User.current.ident
-
-    flash[:warning] = "Set up your nickname."
-    redirect_to :controller => "users", :action => "edit"
-    return false
-  end
-
   def set_current_user(user)
     session[:user_id] = user.id
     User.current = user
@@ -104,6 +95,36 @@ class ApplicationController < ActionController::Base # :nodoc:
   def reset_current_user
     session[:user_id] = nil
     User.current = nil
+  end
+
+  def set_omniauth_info(auth)
+    session[:provider]   = auth["provider"]
+    session[:uid]        = auth["uid"]
+    session[:avatar_url] = auth["info"]["image"]
+  end
+
+  def reset_omniauth_info
+    session[:provider]   = nil
+    session[:uid]        = nil
+    session[:avatar_url] = nil
+  end
+
+  def restore_omniauth_info
+    auth = {}
+    auth["info"] = {}
+
+    auth["provider"]      = session[:provider]
+    auth["uid"]           = session[:uid]
+    auth["info"]["image"] = session[:avatar_url]
+    return auth
+  end
+
+  def authenticate_with_omniauth
+    return true if session[:provider] && session[:uid] && session[:avatar_url]
+
+    flash[:warning] = "User not omniauthed cannot create user."
+    redirect_to :controller => "gate", :action => "login"
+    return false
   end
 
   def reset_session_expires

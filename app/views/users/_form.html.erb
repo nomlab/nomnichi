@@ -1,29 +1,6 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_tag controller: :users, action: :create do %>
+  <label>Nickname (Input your SWLAB account name.)</label>
+  <%= text_field :user, :ident, class: "form-control" %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :ident %><br>
-    <%= f.text_field :ident %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :salt %><br>
-    <%= f.text_field :salt %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= button_tag "Submit", class: "btn btn-default" %>
 <% end %>

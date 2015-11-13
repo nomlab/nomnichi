@@ -10,7 +10,7 @@ class GateController < ApplicationController
     end
 
     set_current_user(user)
-    redirect_to(session[:jumpto] || '/')
+    redirect_to(session[:jumpto] || root_path)
   end
 
   def omniauth
@@ -24,6 +24,7 @@ class GateController < ApplicationController
 
     if user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
       flash[:info] = "#{user.ident} logged in."
+      user.update_with_omniauth(auth)
       set_current_user(user)
       reset_session_expires
       redirect_to(session[:jumpto] || root_path)
@@ -37,15 +38,15 @@ class GateController < ApplicationController
       return true
     end
 
-    restricted_user = User.create_with_omniauth(auth)
-    flash[:info] = "Set up your nickname."
-    set_current_user(restricted_user)
-    redirect_to controller: :users, action: :edit
+    set_omniauth_info(auth)
+    flash[:info] = "Create nomnichi user."
+    redirect_to controller: :users, action: :new
   end
 
   def logout
     flash[:info] = "User #{User.current.ident} logged out."
     reset_current_user
+    reset_omniauth_info
 
     reset_session
     redirect_to root_path

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   require "digest/sha1"
 
+  validates_presence_of :ident
   validates_uniqueness_of :ident
 
   def self.current=(user)
@@ -17,22 +18,9 @@ class User < ActiveRecord::Base
   def self.authenticate(ident, password)
     user = find_by("ident = ?", ident)
     return false if user.nil?
+    return false unless user.is_able_to_password_authenticate?
     pass_sha = Digest::SHA1.hexdigest(user.salt + password)
     return where(["ident=? AND password=?", ident, pass_sha]).first
-  end
-
-  # Omniauth-github has these info:
-  #   https://github.com/intridea/omniauth-github/blob/master/lib/omniauth/strategies/github.rb
-  #
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth["provider"]
-      user.uid      = auth["uid"]
-
-      info = auth["info"]
-      user.ident      = info["nickname"]
-      user.avatar_url = info["image"]
-    end
   end
 
   def self.generate_salt
@@ -43,6 +31,9 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(salt + unencrypted_password)
   end
 
+  # Omniauth-github has these info:
+  #   https://github.com/intridea/omniauth-github/blob/master/lib/omniauth/strategies/github.rb
+  #
   def update_with_omniauth(auth)
     update!(
       provider:   auth["provider"],
@@ -53,5 +44,9 @@ class User < ActiveRecord::Base
 
   def is_associated?
     provider && uid
+  end
+
+  def is_able_to_password_authenticate?
+    password && salt
   end
 end
