@@ -38,6 +38,9 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @article.content = "<!-- folding -->"
+    @article.perma_link = User.current.ident + "-" + Time.now.to_s(:perma_link)
+    @article.user_id = User.current.id
   end
 
   # GET /articles/1/edit

@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :user_id, value: @article.user_id || User.current.id %>
+  <%= f.hidden_field :user_id %>
 
   <div class="field form-group">
     <%= f.label :title %><br>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
 
-  <%= f.hidden_field :perma_link, value: @article.perma_link || User.current.ident + "-" + Time.now.to_s(:perma_link) %>
+  <%= f.hidden_field :perma_link %>
 
   <div class="field">
     <%= f.label :published_on %><br>
@@ -49,11 +49,7 @@
   <div class="field form-group">
     <div class="tab-content">
       <div class="tab-pane active" id="write" role="tabpanel">
-        <% if controller.action_name == "new" %>
-          <%= f.text_area :content, class: 'form-control', rows: 20, wrap: :off, value: "<!-- folding -->" %>
-        <% else %>
-          <%= f.text_area :content, class: 'form-control', rows: 20, wrap: :off %>
-        <% end %>
+	<%= f.text_area :content, :rows => 20, :wrap => :off %>
       </div>
       <div class="tab-pane preview_area" id="preview" role="tabpanel">
       </div>
