@@ -25,9 +25,14 @@
       <hr>
 
       <% unless User.current.nil? %>
-       <div class="article-info">
-        <%= link_to '編集', edit_article_path(@article) %>
-       </div>
+        <div class="article-info">
+          <%= link_to edit_article_path(@article) do %>
+            <%= fa_icon "pencil" %>
+          <% end %>
+          <%= link_to article_path(@article), method: :delete, data: {confirm: 'Are you sure?'} do %>
+            <%= fa_icon "trash" %>
+          <% end %>
+        </div>
       <% end %>
 
       <div class="clear">
