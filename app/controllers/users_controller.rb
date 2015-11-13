@@ -79,12 +79,6 @@ class UsersController < ApplicationController
 
   # POST /users/1/change_password
   def change_password
-    unless User.authenticate(@user.ident, params[:old_password]) == User.current
-      flash[:danger] = 'Old password is wrong.'
-      redirect_to root_path + "settings"
-      return false
-    end
-
     unless params[:new_password] == params[:password_for_confirming]
       flash[:danger] = 'Password does not match the confirmation'
       redirect_to root_path + "settings"
