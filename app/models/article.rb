@@ -9,4 +9,8 @@ class Article < ActiveRecord::Base
   paginates_per 10
 
   default_scope { order("created_at desc") }
+  scope :approved, -> { where("approved = ?", true) }
+  scope :search, ->(query) {
+    where("title LIKE ? or content LIKE ?", "%#{query}%", "%#{query}%")
+  }
 end

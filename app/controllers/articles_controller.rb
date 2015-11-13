@@ -119,20 +119,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    if User.current
-      if params[:query]
-        articles = Article.where("title LIKE ? or content LIKE ?",
-                                 "%#{params[:query]}%",
-                                 "%#{params[:query]}%")
-      end
-    else
-      if params[:query]
-        articles = Article.where("approved = ? and (title LIKE ? or content LIKE ?)",
-                                 true,
-                                 "%#{params[:query]}%",
-                                 "%#{params[:query]}%")
-      end
-    end
+    articles = User.current ? Article.all : Article.approved
+    articles = articles.search(params[:query]) if params[:query].present?
     @articles = articles.page(params[:page])
     respond_to do |format|
       format.html { render action: "index" }
