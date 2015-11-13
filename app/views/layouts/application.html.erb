@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) || "Nomnichi" %></title>
+    <title><%= yield(:title).present? ? yield(:title) : "岡山大学大学院 自然科学研究科 産業創成工学専攻 計算機科学講座 (乃村研究室)" %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= favicon_link_tag %>
