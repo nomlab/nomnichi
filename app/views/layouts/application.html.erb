@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container-fluid main-content">
       <% flash.each do |name, msg| %>
         <div class="alert alert-<%= name %>">
           <button type="button" class="close" data-dismiss="alert">×</button>
@@ -76,7 +76,7 @@
       <%= yield %>
     </div>
    </div>
-    <div class="container">
+    <div class="container-fluid">
      <footer>
       <%= link_to "Nomura Laboratory (c)", {:controller => "gate", :action => "login"}, :class => "unclear-link" %>
      </footer>
