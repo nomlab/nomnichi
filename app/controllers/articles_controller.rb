@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate, except: [:index, :show, :search]
+  before_filter :authenticate, except: [:index, :show, :archive, :search]
   before_action :set_article, only: [:edit, :update, :destroy]
   before_action :set_parameters_for_sidebar, only: [:index, :search]
   before_action :set_article_by_perma_link, only: [:show]
