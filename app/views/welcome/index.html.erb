@@ -36,5 +36,7 @@
   </div>
   <p></p>
   <%= render partial: "articles/card", collection: @headline, as: :article %>
-  <%= link_to "(もっと読む)", articles_path %>
+  <%= link_to articles_path do %>
+    <%= fa_icon "newspaper-o" %> More Articles
+  <% end %>
 </div>
