@@ -90,3 +90,18 @@
     @extend .private;
     @extend .title-header;
 }
+
+div.content img {
+  max-width: 100%;
+  height: auto;
+
+  @media (max-width: $screen-xs-min) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: $screen-xs-min) {
+    max-width: $screen-xs-min - 90px;
+  }
+}
