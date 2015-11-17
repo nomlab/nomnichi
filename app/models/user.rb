@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
     @current_user
   end
 
+  def self.login?
+    @current_user.present?
+  end
+
   def self.authenticate(ident, password)
     user = find_by("ident = ?", ident)
     return false if user.nil?
