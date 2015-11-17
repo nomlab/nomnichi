@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base # :nodoc:
         return send_file(template)
       end
     end
-    render :file => File.join(Rails.root,  'public_html', '404.html')
+    render file: File.join(Rails.root, 'public_html', '404.html'), status: 404
   end
 
   private

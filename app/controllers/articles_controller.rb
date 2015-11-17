@@ -141,7 +141,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_article_by_perma_link
-    @article = Article.find_by(perma_link: params[:perma_link])
+    @article = Article.find_by!(perma_link: params[:perma_link])
   end
 
   def set_parameters_for_sidebar
