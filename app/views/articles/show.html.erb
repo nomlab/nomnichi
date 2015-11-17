@@ -39,6 +39,8 @@
 
       <hr>
 
+      <%= link_to fa_icon("home"), articles_path %>
+
       <% unless User.current.nil? %>
         <div class="article-info">
           <%= link_to edit_article_path(@article) do %>
@@ -68,8 +70,5 @@
 
     <div class="clear">
     </div>
-
-    <%= link_to '戻る', articles_path %>
-
   </div>
 </div>
