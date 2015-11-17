@@ -95,3 +95,14 @@
     @extend .private;
     @extend .title-header;
 }
+
+.link-boxes {
+  border-radius: 5px;
+  margin: 0px 0px 13px 0px;
+  line-height: 1.5em;
+}
+
+.link-box {
+  padding: 8px 0 8px 0;
+  @extend .text-center;
+}
