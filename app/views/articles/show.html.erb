@@ -24,6 +24,21 @@
 
       <hr>
 
+      <div class="row link-boxes">
+        <% if p = @article.previous %>
+          <%= link_to_article_by_perma_link(fa_icon("chevron-left", text: p.title),
+                                            p,
+                                            {class: "col-xs-6 link-box"}) %>
+        <% end %>
+        <% if n = @article.next %>
+          <%= link_to_article_by_perma_link(fa_icon("chevron-right", text: n.title, right: true),
+                                            n,
+                                            {class: "col-xs-6 link-box"}) %>
+        <% end %>
+      </div>
+
+      <hr>
+
       <% unless User.current.nil? %>
         <div class="article-info">
           <%= link_to edit_article_path(@article) do %>
