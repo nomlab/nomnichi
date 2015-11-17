@@ -1,5 +1,5 @@
 <div class="side_bar">
-  <%= form_tag '/articles/search', method: 'GET' do %>
+  <%= form_tag articles_search_path, method: 'GET' do %>
     <div class="input-group" id="search-article">
       <%= text_field_tag :query, nil, class: "form-control", placeholder: "Search Articles" %>
       <span class="input-group-btn">
