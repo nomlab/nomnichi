@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "gate#omniauth"
   match "gate/login", :via => [:get, :post]
   get "gate/logout"
-  get '*path', to: 'application#rescue_404'
+  get '*path', to: 'application#render_static_page'
 end
