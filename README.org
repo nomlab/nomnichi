@@ -1,9 +1,10 @@
 * What is nomnichi?
   nomnichi is a Nomura Laboratory's blog system developed by Ruby on Rails.
-* Environment
+
+* Setup Ruby and clone nomnichi
   | Ruby  | 2.2.3 |
   | Rails | 4.2.4 |
-* Installation for developers
+
   I recommend you to install new Ruby and Bundler on the top of Rbenv before install nomnichi.
 
   1) Install rbenv + ruby-build (check https://github.com/sstephenson/rbenv#basic-github-checkout for details)
@@ -33,7 +34,7 @@
        $ ruby -v
      #+END_SRC
 
-  3) clone nomnichi from github
+  3) Clone nomnichi from GitHub
      #+BEGIN_SRC sh
        $ git clone git@github.com:nomlab/nomnichi.git ~/Programs/nomnichi
      #+END_SRC
@@ -45,39 +46,83 @@
        $ ruby -v # -> You will see: ruby 2.2.3...
      #+END_SRC
 
-  5) Install vendor/bundle stuffs
+* Installation of nomnichi for developers
+  You can install by invoking bin/install.sh:
+  #+BEGIN_SRC sh
+       $ bin/install.sh
+  #+END_SRC
+
+  Or, you can take these procedures by hand:
+
+  1) Install vendor/bundle stuffs
      #+BEGIN_SRC sh
        $ bundle install --path vendor/bundle
      #+END_SRC
 
-  6) Setup secret key
+  2) Setup secret key
      #+BEGIN_SRC sh
        $ bundle exec rake secret # -> You will see: foobarbuz... Copy the string.
-       $ cp config/secrets-example.yml config/secrets.yml
+       $ cp config/secrets.yml.template config/secrets.yml
        $ vim config/secrets.yml # -> Replace all <SECRETKEY> with the string outputted
      #+END_SRC
 
-  7) Setup GitHub OmniAuth
+  3) Setup GitHub OmniAuth
      #+BEGIN_SRC sh
-       $ cp config/application_settings_sample.yml config/application_settings.yml
+       $ cp config/application_settings.yml.template config/application_settings.yml
        $ vim config/application_settings.yml # -> set client_id, client_secret, allowed_team_id
      #+END_SRC
 
-  8) Setup DB
+  4) Setup DB
      #+BEGIN_SRC sh
        $ bundle exec rake db:migrate
        $ bundle exec rake db:migrate RAILS_ENV=production
      #+END_SRC
 
 * Launch nomnichi Rails app
-
 ** development
+   You can launch server by invoking bin/server.sh:
    #+BEGIN_SRC sh
-     $ bundle exec rails s
+     # start
+     $ bin/server.sh start dev
+
+     # stop
+     $ bin/server.sh stop
    #+END_SRC
 
-** production
+   Or, you can take these procedures by hand:
    #+BEGIN_SRC sh
-     $ bundle exec rake assets:precompile RAILS_ENV=production
-     $ bundle exec rails s -e production
+     # start
+     $ export RAILS_ENV="development"
+     $ export RAILS_RELATIVE_URL_ROOT='/lab/nom'
+     $ export RAILS_SERVE_STATIC_FILES=true
+     $ bundle exec rails server -b 0.0.0.0 -p 3000 -d -e "$RAILS_ENV"
+     $ open http://localhost:3000/lab/nom
+
+     # stop
+     $ kill $(cat tmp/pids/server.pid)
+   #+END_SRC
+   You can also
+
+** production
+   You can launch server by invoking bin/server.sh:
+   #+BEGIN_SRC sh
+     # start
+     $ bin/server.sh start pro
+
+     # stop
+     $ bin/server.sh stop
+   #+END_SRC
+
+   Or, you can take these procedures by hand:
+   #+BEGIN_SRC sh
+     # start
+     $ export RAILS_ENV="production"
+     $ export RAILS_RELATIVE_URL_ROOT='/lab/nom'
+     $ export RAILS_SERVE_STATIC_FILES=true
+     $ bundle exec rake assets:precompile RAILS_ENV="$RAILS_ENV"
+     $ bundle exec rails server -b 0.0.0.0 -p 54321 -d -e "$RAILS_ENV"
+     $ open http://localhost:54321/lab/nom
+
+     # stop
+     $ kill $(cat tmp/pids/server.pid)
    #+END_SRC

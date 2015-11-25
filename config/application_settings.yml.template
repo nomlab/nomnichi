@@ -1,16 +1,17 @@
 ##
 ## config/application_settings.yml
-##
+## <%= config[:description] %>
 ##
 default: &default
   oauth:
     github:
-      client_id: XXXXXXXXXXXXXXXXX
-      client_secret: XXXXXXXXXXXXXXXXXXX
+      client_id: "<%= config[:client_id] %>"
+      client_secret: "<%= config[:client_secret] %>"
       ## allowed_team_id is a github team id adllowed to login.
       ## It can be checked by:
       ##   curl -u [your-github-account] https://api.github.com/orgs/:org/teams
-      allowed_team_id: xxxxx
+      ## Team name: <%= config[:org_name] %>/<%= config[:team_name] %>
+      allowed_team_id: "<%= config[:team_id] %>"
 
 development:
   <<: *default
