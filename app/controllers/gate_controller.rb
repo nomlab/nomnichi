@@ -2,7 +2,10 @@ class GateController < ApplicationController
   skip_before_filter :authenticate
 
   def login
-    return false if request.method_symbol == :get
+    if request.method_symbol == :get
+      session[:referrer] = request.referrer unless request.referrer == url_for(controller: :gate, action: :login)
+      return false
+    end
 
     unless user = User.authenticate(params[:ident], params[:password])
       flash[:warning] = "Nickname and/or password are/is wrong."
@@ -10,7 +13,7 @@ class GateController < ApplicationController
     end
 
     set_current_user(user)
-    redirect_to(session[:jumpto] || root_path)
+    redirect_to(session[:jumpto] || session[:referrer] || root_path)
   end
 
   def omniauth
