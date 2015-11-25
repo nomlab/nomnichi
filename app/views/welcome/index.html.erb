@@ -17,15 +17,36 @@
   また，オペレーティングシステム(OS)とその周辺についての 研究開発と，それらを通じた計算機そのものへの 深い理解を得ることも目的としています．
   研究室の学生は，以下のプロジェクトのいずれかに 所属して研究開発を進めています．
 </p>
-<ul>
-  <li>グループウェアとネットワークサービスグループ(GN)</li>
-  <li>新しいOSに関する研究開発グループ(New)</li>
-</ul>
+
 <dl>
   <dt>[キーワード]</dt>
   <dd>グループウェア，分散処理，計算機ネットワーク，オペレーティングシステム</dd>
 </dl>
+
+
+<h1 class="contents-title">リンク</h1>
+<ul>
+  <li><%= link_to "構成員", root_path + "members.html" %></li>
+
+  <li>研究紹介</li>
+  <ul>
+    <li><%= link_to "グループウェアとネットワークサービスグループ(GN)", root_path + "research/gn/index.html" %></li>
+    <li><%= link_to "新しいOSに関する研究開発グループ(New)", root_path + "research/new/index.html" %></li>
+    <li><%= link_to "経済学部との連携", root_path + "research/other/index.html" %></li>
+  </ul>
+  <li>研究業績</li>
+  <ul>
+    <li><%= link_to "発表論文一覧", root_path + "bibs/index.html" %></li>
+    <li><%= link_to "学位論文一覧", root_path + "thesis/index.html" %></li>
+  </ul>
+  <li><%= link_to "アクセス", root_path + "access/index.html" %></li>
+</ul>
+
 <h1 class="contents-title">ノムニチ注目記事</h1>
+
+<%= link_to "ノムニチとは?&raquo;".html_safe , root_path + "nomnichi/about" %>
+<br/>
+<br/>
 <%= render partial: "articles/card", collection: @headline, as: :article %>
 <%= link_to articles_path do %>
   <%= fa_icon "newspaper-o" %> More Articles
