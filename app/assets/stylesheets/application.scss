@@ -78,7 +78,7 @@ h3.title {
 
 .topimg{
   float: left;
-
+  margin-right: 10px;
     img {
       width: 80px !important;
       max-width: 80px !important;
@@ -86,12 +86,18 @@ h3.title {
   }
 }
 
+.toptitle{
+  display: table-cell;
+  height: 113px;
+  vertical-align: middle;
+}
+
 .topbelong{
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .topname{
-    font-size: 30px;
+    font-size: 14px;
 }
 
 @media (min-width: $screen-xs-min) {
