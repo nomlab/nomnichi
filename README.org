@@ -1,7 +1,7 @@
 * What is nomnichi?
-  nomnichi is a Nomura Laboratory's blog system developed by Ruby on Rails.
+  nomnichi is a Nomura Laboratory's blog system implemented in Ruby on Rails.
 
-* Setup Ruby and clone nomnichi
+* Setup Ruby environment
   | Ruby  | 2.2.3 |
   | Rails | 4.2.4 |
 
@@ -21,7 +21,7 @@
 
        # Installation check
        $ rbenv global 2.2.3
-       $ ruby -v # -> You will see: ruby 2.1.5...
+       $ ruby -v # -> You will see: ruby 2.2.3...
 
        # Install bundler for your new Ruby
        $ gem install bundler
@@ -34,25 +34,28 @@
        $ ruby -v
      #+END_SRC
 
-  3) Clone nomnichi from GitHub
+* Install nomnichi
+
+** Clone nomnichi
+  1) Clone nomnichi from GitHub
      #+BEGIN_SRC sh
        $ git clone git@github.com:nomlab/nomnichi.git ~/Programs/nomnichi
      #+END_SRC
 
-  4) Setup to use installed ruby
+  2) Setup to use installed ruby
      #+BEGIN_SRC sh
        $ cd ~/Programs/nomnichi
        $ rbenv local 2.2.3
        $ ruby -v # -> You will see: ruby 2.2.3...
      #+END_SRC
 
-* Installation of nomnichi for developers
-  You can install by invoking bin/install.sh:
+** Setup config files
+  You can setup site-local config files interactively by invoking bin/install.sh:
   #+BEGIN_SRC sh
        $ bin/install.sh
   #+END_SRC
 
-  Or, you can take these procedures by hand:
+  Or, you can edit config files by hand:
 
   1) Install vendor/bundle stuffs
      #+BEGIN_SRC sh
@@ -78,7 +81,7 @@
        $ bundle exec rake db:migrate RAILS_ENV=production
      #+END_SRC
 
-* Launch nomnichi Rails app
+* Launch nomnichi
 ** development
    You can launch server by invoking bin/server.sh:
    #+BEGIN_SRC sh
@@ -101,7 +104,6 @@
      # stop
      $ kill $(cat tmp/pids/server.pid)
    #+END_SRC
-   You can also
 
 ** production
    You can launch server by invoking bin/server.sh:
