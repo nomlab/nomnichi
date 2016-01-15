@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :articles, except: :show
   get 'articles/search'
   get 'articles/:perma_link', to: 'articles#show'
-  get 'articles/archive/:year(/:month)', to: 'articles#archive'
+  get 'articles/archive/:param', to: 'articles#archive'
   resources :comments
   resources :articles
   get 'settings', to:  'users#edit'

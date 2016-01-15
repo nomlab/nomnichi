@@ -34,20 +34,23 @@ module ArticlesHelper
       end_time = DateTime.new(year + 1, 3, 31, 23, 59, 59, 99)
       item = articles.where("created_at >= ? and created_at <= ?", start_time, end_time)
       item = item.where("approved = ?", true) unless User.current
-      year_archives << {:year => "#{start_time.year}", :item => item.length, :month => list_month_archives(item)} unless item.empty?
+      year_archives << {:year => "#{start_time.year}", :item => item.length, :month => list_month_archives(item, start_time.year)} unless item.empty?
     end
     year_archives.select
   end
 
-  def list_month_archives(articles)
+  def list_month_archives(articles, year)
     month_archives = []
-    year = articles.first.created_at.year
     newest_month = articles.first.created_at.month
     oldest_month = articles.last.created_at.month
     ["04","05","06","07","08","09","10","11","12","01","02","03"].each do |month|
       item = articles.where("strftime('%m',created_at) = ?",month)
       item = item.where("approved = ?", true) unless User.current
-      month_archives << {:month => "#{month}", :item => item.length}
+      if ["01", "02", "03"].include?(month)
+        month_archives << {:month => "#{month}", :item => item.length, :param => (year + 1).to_s + "/" + month}
+      else
+        month_archives << {:month => "#{month}", :item => item.length, :param => year.to_s + "/" + month}
+      end
     end
     month_archives.select {|month| month[:item] != 0}
   end
