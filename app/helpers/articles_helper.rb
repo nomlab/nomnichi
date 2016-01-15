@@ -47,9 +47,9 @@ module ArticlesHelper
       item = articles.where("strftime('%m',created_at) = ?",month)
       item = item.where("approved = ?", true) unless User.current
       if ["01", "02", "03"].include?(month)
-        month_archives << {:month => "#{month}", :item => item.length, :param => (year + 1).to_s + "/" + month}
+        month_archives << {:month => "#{month}", :item => item.length, :param => (year + 1).to_s + "-" + month}
       else
-        month_archives << {:month => "#{month}", :item => item.length, :param => year.to_s + "/" + month}
+        month_archives << {:month => "#{month}", :item => item.length, :param => year.to_s + "-" + month}
       end
     end
     month_archives.select {|month| month[:item] != 0}
