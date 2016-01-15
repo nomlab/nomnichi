@@ -108,10 +108,10 @@ class ArticlesController < ApplicationController
   end
 
   def archive
-    year = params[:year].to_i
-    month = params[:month].to_i
+    year = params[:param].split("/")[0].to_i
+    month = params[:param].split("/")[1].to_i
 
-    if params[:month] != nil
+    if month != nil
       start_time = DateTime.new(year, month, 1)
       end_time = (start_time >> 1) - Rational(1, 24 * 60 * 60)
     else

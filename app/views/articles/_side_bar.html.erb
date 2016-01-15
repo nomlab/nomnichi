@@ -13,17 +13,17 @@
   <hr class="border">
   <% comments.each do |comment| %>
     <p class="comment-article-title"><%= link_to_article_by_perma_link(comment.article.title, comment.article) %></p>
-    <p class="comment-body">> <%= fold_comment(comment.body) %></p>
+    <p class="comment-body"> <%= fold_comment(comment.body) %></p>
     <p class="comment-name">by <%= comment.user.ident %></p>
   <% end %>
   <h5 class="side-title">Archives</h5>
   <hr class="border">
   <ul class="yearly">
     <% list_year_archives(articles).each do |year| %>
-      <li><%= link_to "#{year[:year]}年度(#{year[:item]})", controller: "articles", action: "archive", year: year[:year]%>
+      <li><%= link_to "#{year[:year]}年度(#{year[:item]})", controller: "articles", action: "archive", param: year[:year]%>
         <ul>
           <% year[:month].each do |month| %>
-            <li><%= link_to("#{month[:month]}月(#{month[:item]})", controller: "articles", action: "archive", year: year[:year], month: month[:month]) %></li>
+            <li><%= link_to("#{month[:month]}月(#{month[:item]})", controller: "articles", action: "archive", param: month[:param]) %></li>
           <% end %>
         </ul>
       </li>
