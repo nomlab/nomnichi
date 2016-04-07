@@ -146,7 +146,7 @@ class ArticlesController < ApplicationController
 
   def set_parameters_for_sidebar
     @article_all = Article.all
-    @comments = Comment.all.order("created_at desc").slice(0..4)
+    @comments = Comment.all.slice(0..4)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
