@@ -147,6 +147,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    rouge (1.11.1)
     sanitize (4.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -201,6 +202,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-github-team-member
   rails (= 4.2.4)
+  rouge (~> 1.8)
   sanitize
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
