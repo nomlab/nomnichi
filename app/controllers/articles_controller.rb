@@ -104,7 +104,13 @@ class ArticlesController < ApplicationController
       </div>
       """
     clear = "<div class='clear'></div>"
-    render text: title + Kramdown::Document.new(article_params[:content]).to_html + clear
+
+    render text: title + Kramdown::Document.new(article_params[:content],
+                                                input: "GFM",
+                                                syntax_highlighter: :rouge,
+                                                syntax_highlighter_opts: {css_class: 'highlight'}
+                                               ).to_html + clear
+
   end
 
   def archive

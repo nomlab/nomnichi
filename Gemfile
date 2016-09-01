@@ -47,6 +47,7 @@ end
 
 gem 'bootstrap-sass'
 gem 'kramdown'
+gem 'rouge', '~> 1.8'
 gem 'sanitize'
 gem 'kaminari'
 
