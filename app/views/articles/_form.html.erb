@@ -44,6 +44,9 @@
     <li role="presentation">
       <a aria-controls="preview" data-toggle="tab" href="#preview" id="preview-tab" role="tab">Preview</a>
     </li>
+    <li role="presentation">
+      <a aria-controls="preview" data-toggle="tab" href="#photo" id="photo-tab" role="tab">Photo</a>
+    </li>
   </ul>
 
   <div class="field form-group">
@@ -52,6 +55,9 @@
 	<%= f.text_area :content, class: "form-control", rows: 20, wrap: :off %>
       </div>
       <div class="tab-pane preview_area" id="preview" role="tabpanel">
+      </div>
+      <div class="tab-pane preview_area" id="photo" role="tabpanel">
+        ここに埋める
       </div>
     </div>
   </div>
