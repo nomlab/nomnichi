@@ -80,6 +80,11 @@ namespace :nomnichi do
     sh.say_status "info", "Setting up #{path}..."
     next if engine.warn_file_existance(path)
 
+    # setup variables required in template
+    config = {
+      secret_key_base:     nil
+    }
+
     config[:secret_key_base] = SecureRandom.hex(64)
     engine.create_file_from_template(path, binding)
   end
