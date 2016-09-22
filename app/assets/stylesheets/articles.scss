@@ -79,6 +79,17 @@
   min-height: 400px;
 }
 
+#photo {
+  height: 400px;
+  overflow: auto;
+}
+
+#photo img {
+  max-width: 128px;
+  max-height: 128px;
+  min-width: 40px;
+  min-height: 40px;
+}
 
 #side-bar-open-button{
     position: fixed;
