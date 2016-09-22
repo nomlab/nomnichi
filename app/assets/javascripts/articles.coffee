@@ -81,6 +81,24 @@ getPicasaAlbum = (user, album, authkey) ->
     return  1 if b.updated > a.updated
     return  0
 
+#
+# getPhotoList
+#
+getPhotoList = (on_success_func) ->
+  top = "http://localhost:4567/nomnichi/photos"
+  $.ajax
+    url: top
+    dataType: 'jsonp'
+    jsonpCallback: 'pinatra_photo_list'
+    data:
+      "start-index": 1
+      "max-results": 3000
+      thumbsize:     '128c'
+      kind:          'photo'
+      alt:           'json'
+      imgmax:        800
+    success: (json) ->
+      on_success_func(json)
 ################################################################
 # Emoji
 
@@ -172,20 +190,20 @@ ready = ->
 
   # Insert Photo panel
   $('#photo').html('<span>Loading...</span>')
-  picasa = getPicasaAlbumCredentials().picasa
-  photo_entries = getPicasaAlbum(picasa.user, picasa.album, picasa.authkey)
-  $('#photo').html photo_entries.map (entry) ->
-    thumb = entry.thumb
-    """
-    <a class="thumb-link" href="#{entry.src}">
-      <img class="thumb" src="#{thumb.url}" width="#{thumb.width}" height="#{thumb.height}" title="#{entry.title}" />
-    </a>
-    """
-
-  # click photo thumbnail to insert into Write panel
-  $('.thumb-link').on 'click', (ev) ->
-    insertToWriterPanel "![#{ev.target.title}](#{this.href}){:width=\"300px\" class=\"photo\"}\n"
-    ev.preventDefault()
+  # picasa = getPicasaAlbumCredentials().picasa
+  # photo_entries = getPicasaAlbum(picasa.user, picasa.album, picasa.authkey)
+  getPhotoList (photo_entries) ->
+    $('#photo').html photo_entries.map (entry) ->
+      thumb = entry.thumb
+      """
+      <a class="thumb-link" href="#{entry.src}">
+        <img class="thumb" src="#{thumb.url}" width="#{thumb.width}" height="#{thumb.height}" title="#{entry.title}" />
+      </a>
+      """
+    # click photo thumbnail to insert into Write panel
+    $('.thumb-link').on 'click', (ev) ->
+      insertToWriterPanel "![#{ev.target.title}](#{this.href}){:width=\"300px\" class=\"photo\"}\n"
+      ev.preventDefault()
 
   setupRenderPreviewButton('#preview-tab')
   $('.yearly').treeview(
