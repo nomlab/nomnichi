@@ -160,15 +160,15 @@ setupRenderPreviewButton = (selector) ->
 
 ready = ->
   setupTabCallback("#write", "#preview")
-  setupAutoCompleteEmoji('#article_content')
+  # setupAutoCompleteEmoji('#article_content')
 
   # Insert Emoji Panel
-  insertEmojiPannel('#emoji')
+  # insertEmojiPannel('#emoji')
 
   # click emoji to insert into Write panel
-  $(".emoji-button").on 'click', (ev) ->
-    insertToWriterPanel $(this).attr('data-string')
-    ev.preventDefault()
+  #$(".emoji-button").on 'click', (ev) ->
+  #  insertToWriterPanel $(this).attr('data-string')
+  #  ev.preventDefault()
 
   # Insert Photo panel
   $('#photo').html('<span>Loading...</span>')
