@@ -99,6 +99,34 @@ getPhotoList = (on_success_func) ->
       imgmax:        800
     success: (json) ->
       on_success_func(json)
+#
+# count marked photos
+#
+countMarkedPhotos = (count_div, inserter_div) ->
+  count = $(count_div).find('.marked').length
+  s = if count > 1 then "s" else ""
+  if count > 0
+    $(inserter_div).children().show("slide")
+    $("#{inserter_div} > .message").html "#{count} photo#{s} marked"
+  else
+    $(inserter_div).children().hide("slide")
+
+#
+# clear marked photos
+#
+clearMarkedPhotos = (photo_div, inserter_div) ->
+  $(photo_div).find('.marked').removeClass('marked')
+  countMarkedPhotos(photo_div, inserter_div)
+
+#
+# insert marked photos to Write pane
+#
+insertMarkedPhotos = (photo_div) ->
+  $(photo_div).find('.thumb-box').each (index) ->
+    if $(this).children('.marked').length > 0
+      photo = $(this).children('.thumb-link')[0]
+      insertToWriterPanel "![#{photo.title}](#{photo.href}){:width=\"300px\" class=\"photo\"}\n"
+
 ################################################################
 # Emoji
 
@@ -196,14 +224,29 @@ ready = ->
     $('#photo').html photo_entries.map (entry) ->
       thumb = entry.thumb
       """
-      <a class="thumb-link" href="#{entry.src}">
-        <img class="thumb" src="#{thumb.url}" width="#{thumb.width}" height="#{thumb.height}" title="#{entry.title}" />
-      </a>
+      <div class="thumb-box">
+        <a class="thumb-link" href="#{entry.src}" title="#{entry.title}" data-gallery>
+          <img class="thumb" src="#{thumb.url}" width="#{thumb.width}px" height="#{thumb.height}px" title="#{entry.title}" />
+        </a>
+        <a class="checkmark" href="#">
+          <i class="fa fa-check-circle"></i>
+        </a>
+      </div>
       """
-    # click photo thumbnail to insert into Write panel
-    $('.thumb-link').on 'click', (ev) ->
-      insertToWriterPanel "![#{ev.target.title}](#{this.href}){:width=\"300px\" class=\"photo\"}\n"
-      ev.preventDefault()
+    # click photo checkmark to add marker
+    $('.checkmark').on 'click', (ev) ->
+      $(this).toggleClass('marked')
+      countMarkedPhotos("#photo", "#photo_inserter")
+
+
+    # click inserter X button to clear selected marks
+    $('#photo_inserter .remove').on 'click', (ev) ->
+      clearMarkedPhotos("#photo", "#photo_inserter")
+
+    # click inserter share button to send them to Write pane
+    $('#photo_inserter .share').on 'click', (ev) ->
+      insertMarkedPhotos("#photo")
+      clearMarkedPhotos("#photo", "#photo_inserter")
 
   setupRenderPreviewButton('#preview-tab')
   $('.yearly').treeview(
