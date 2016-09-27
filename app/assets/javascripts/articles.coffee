@@ -228,9 +228,7 @@ ready = ->
         <a class="thumb-link" href="#{entry.src}" title="#{entry.title}" data-gallery>
           <img class="thumb" src="#{thumb.url}" width="#{thumb.width}px" height="#{thumb.height}px" title="#{entry.title}" />
         </a>
-        <a class="checkmark" href="#">
-          <i class="fa fa-check-circle"></i>
-        </a>
+        <i class="checkmark fa fa-check-circle"></i>
       </div>
       """
     # click photo checkmark to add marker
