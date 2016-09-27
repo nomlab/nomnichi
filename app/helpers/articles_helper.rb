@@ -1,3 +1,4 @@
+# coding: utf-8
 module ArticlesHelper
   def fold_article(content)
     if /<!-- folding -->/ =~ content then
@@ -55,6 +56,9 @@ module ArticlesHelper
     month_archives.select {|month| month[:item] != 0}
   end
 
+  def tweet_button(title, author)
+    str = "<a href='https://twitter.com/share' class='twitter-share-button' data-url='#{request.url}' data-text='#{title} by #{author}  - ノムニチ'></a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>".html_safe
+  end
   private
 
   def get_char_bytesize(c)
