@@ -183,6 +183,7 @@ renderMarkdown = (text, update_element, linenum) ->
 
 ################################################################
 # original nomnichi pane handler
+
 setupRenderPreviewButton = (selector) ->
   $(selector).on 'click', (e) ->
     previewArea = $(".preview_area")
@@ -212,9 +213,21 @@ setMoveSidebar = -> # this function is used to move sidebar when page is scrolle
     else
       $('.side_bar').stop().animate marginTop: 0 # fix to the top
 
-################################################################
-## Setup Functions
+setupTweetButton = () ->
+  !((d, s, id) ->
+    js = undefined
+    fjs = d.getElementsByTagName(s)[0]
+    p = if /^http:/.test(d.location) then 'http' else 'https'
+    if !d.getElementById(id)
+      js = d.createElement(s)
+      js.id = id
+      js.src = p + '://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore js, fjs
+      return
+   )(document, 'script', 'twitter-wjs')
 
+################################################################
+# Setup Functions
 ready = ->
   setMoveSidebar()
   setupTabCallback("#write", "#preview")
@@ -262,6 +275,7 @@ ready = ->
       ev.preventDefault()
 
   setupRenderPreviewButton('#preview-tab')
+  setupTweetButton()
   $('.yearly').treeview(
     collapsed: true
     hoverClass: "archive-hover"
