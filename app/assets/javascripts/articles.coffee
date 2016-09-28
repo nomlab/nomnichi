@@ -235,16 +235,19 @@ ready = ->
     $('.checkmark').on 'click', (ev) ->
       $(this).toggleClass('marked')
       countMarkedPhotos("#photo", "#photo_inserter")
+      ev.preventDefault()
 
 
     # click inserter X button to clear selected marks
     $('#photo_inserter .remove').on 'click', (ev) ->
       clearMarkedPhotos("#photo", "#photo_inserter")
+      ev.preventDefault()
 
     # click inserter share button to send them to Write pane
     $('#photo_inserter .share').on 'click', (ev) ->
       insertMarkedPhotos("#photo")
       clearMarkedPhotos("#photo", "#photo_inserter")
+      ev.preventDefault()
 
   setupRenderPreviewButton('#preview-tab')
   $('.yearly').treeview(
