@@ -13,6 +13,10 @@
  *= require jquery.treeview
  *= require font-awesome
  *= require_self
+ *= require blueimp-gallery
+ *= require bootstrap-image-gallery
+ *= require blueimp-gallery-indicator
+ *= require blueimp-gallery-video
  */
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";

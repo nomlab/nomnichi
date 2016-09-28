@@ -37,12 +37,28 @@
 
   <%= f.hidden_field :count %>
 
+  <div id="photo_inserter">
+    <span class="message"></span>
+    &nbsp;
+    <a class="share" href="#" title="Insert to Write pane">
+      <i class="fa fa-fw fa-share-alt"></i>
+    </a>
+    &nbsp;
+    <a class="remove" href="#" title="Clear all marks">
+      <i class="fa fa-fw fa-remove"></i>
+    </a>
+  </div>
+
+
   <ul class="nav nav-tabs" role="tablist">
     <li class="active" role="presentation">
       <a aria-controls="write" data-toggle="tab" href="#write" id="write-tab" role="tab">Write</a>
     </li>
     <li role="presentation">
       <a aria-controls="preview" data-toggle="tab" href="#preview" id="preview-tab" role="tab">Preview</a>
+    </li>
+    <li role="presentation">
+      <a aria-controls="photo" data-toggle="tab" href="#photo" id="photo-tab" role="tab">Photo</a>
     </li>
   </ul>
 
@@ -53,8 +69,48 @@
       </div>
       <div class="tab-pane preview_area" id="preview" role="tabpanel">
       </div>
+      <div class="tab-pane" id="photo" role="tabpanel">
+        ここに埋める
+      </div>
     </div>
   </div>
 
   <%= f.submit class: 'btn btn-default' %>
 <% end %>
+
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<!-- add ``blueimp-gallery-controls'' to class= if you need some control buttons -->
+<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+  <!-- The container for the modal slides -->
+  <div class="slides"></div>
+  <!-- Controls for the borderless lightbox -->
+  <h3 class="title"></h3>
+  <a class="checkmark"><i class="fa fa-check-circle"></i></a>
+  <a class="prev">‹</a>
+  <a class="next">›</a>
+  <a class="close">×</a>
+  <a class="play-pause"></a>
+  <ol class="indicator"></ol>
+  <!-- The modal dialog, which will be used to wrap the lightbox content -->
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body next"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left prev">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Previous
+          </button>
+          <button type="button" class="btn btn-primary next">
+            Next
+            <i class="glyphicon glyphicon-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
