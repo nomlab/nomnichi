@@ -201,10 +201,22 @@ setupRenderPreviewButton = (selector) ->
         previewArea.empty()
         previewArea.append(html)
 
+setMoveSidebar = -> # this function is used to move sidebar when page is scrolled
+  offset = $('.side_bar').offset();
+  $(window).scroll ->
+    if $(window).scrollTop() > offset.top
+      if $('.articles').height() <= $(window).scrollTop() + $('.side_bar').height() - offset.top
+        $('.side_bar').stop().animate marginTop: $('.articles').height() - $('.side_bar').height() # fix to the bottom
+      else
+        $('.side_bar').stop().animate marginTop: $(window).scrollTop() - offset.top # moving
+    else
+      $('.side_bar').stop().animate marginTop: 0 # fix to the top
+
 ################################################################
 ## Setup Functions
 
 ready = ->
+  setMoveSidebar()
   setupTabCallback("#write", "#preview")
   # setupAutoCompleteEmoji('#article_content')
 
