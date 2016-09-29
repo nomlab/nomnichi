@@ -11,10 +11,6 @@
         </span>
       </div>
       <%= render partial: "info", locals: {article: @article} %>
-      <div class="clear"></div>
-      <div class="share-button">
-	<%= tweet_button(@article.title, @article.user.ident) %>
-      </div>
 
       <div class="clear">
       </div>
@@ -25,6 +21,10 @@
                                        syntax_highlighter: :rouge,
                                        syntax_highlighter_opts: {css_class: 'highlight'}
                                        ).to_html %>
+      </div>
+
+      <div class="share-button">
+	<%= tweet_button(@article.title, @article.user.ident) %>
       </div>
 
       <div class="clear">
