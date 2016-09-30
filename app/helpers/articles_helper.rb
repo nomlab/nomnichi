@@ -8,7 +8,7 @@ module ArticlesHelper
   end
 
   def list_headline(nth)
-    Article.where(promote_headline: true).order("published_on desc").slice(0..nth)
+    Article.visible.where(promote_headline: true).order("published_on desc").slice(0..nth)
   end
 
   def link_to_article_by_perma_link(str, article, option = {})
