@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
 
   paginates_per 10
 
-  default_scope { order("published_on desc").visible }
+  default_scope { order("published_on desc") }
   scope :visible, -> { User.login? ? Article.all : Article.approved }
   scope :approved, -> { where("approved = ?", true) }
   scope :search, ->(query) {

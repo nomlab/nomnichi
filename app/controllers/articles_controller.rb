@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy]
   before_action :set_parameters_for_sidebar, only: [:index, :search]
   before_action :set_article_by_perma_link, only: [:show]
+  before_action :call_auth_if_private_article, only: [:show]
   before_action :count_up, only: [:show]
 
   # GET /articles
@@ -10,20 +11,20 @@ class ArticlesController < ApplicationController
   def index
     if User.current
       if params[:start] && params[:end]
-        articles = Article.where("created_at >= ? and created_at <= ?",
+        articles = Article.visible.where("created_at >= ? and created_at <= ?",
                                  DateTime.parse(params[:start]),
                                  DateTime.parse(params[:end]))
       else
-        articles = Article.all
+        articles = Article.visible.all
       end
     else
       if params[:start] && params[:end]
-        articles = Article.where("approved = ? and created_at >= ? and created_at <= ?",
+        articles = Article.visible.where("approved = ? and created_at >= ? and created_at <= ?",
                                  true,
                                  DateTime.parse(params[:start]),
                                  DateTime.parse(params[:end]))
       else
-        articles = Article.where("approved = ?",true)
+        articles = Article.visible.where("approved = ?",true)
       end
     end
     @articles = articles.page(params[:page])
@@ -132,7 +133,7 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    articles = User.current ? Article.all : Article.approved
+    articles = User.current ? Article.visible.all : Article.visible.approved
     articles = articles.search(params[:query]) if params[:query].present?
     @articles = articles.page(params[:page])
     respond_to do |format|
@@ -146,12 +147,18 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def call_auth_if_private_article
+    if !@article.approved
+      authenticate()
+    end
+  end
+
   def set_article_by_perma_link
     @article = Article.find_by!(perma_link: params[:perma_link])
   end
 
   def set_parameters_for_sidebar
-    @article_all = Article.all
+    @article_all = Article.visible.all
     @comments = Comment.all.slice(0..4)
   end
 
