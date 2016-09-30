@@ -17,7 +17,7 @@
 
       <div class="content">
         <%= raw Kramdown::Document.new(@article.content,
-                                       input: "GFM",
+                                       input: @article.format,
                                        syntax_highlighter: :rouge,
                                        syntax_highlighter_opts: {css_class: 'highlight'}
                                        ).to_html %>

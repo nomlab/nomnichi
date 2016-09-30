@@ -189,6 +189,7 @@ setupRenderPreviewButton = (selector) ->
     previewArea = $(".preview_area")
     title = $('#article_title').val()
     content = $('#article_content').val()
+    format = $('#article_format').val()
     $. ajax
       async:     true
       type:      "POST"
@@ -198,6 +199,7 @@ setupRenderPreviewButton = (selector) ->
         article:
           title: title
           content: content
+          format: format
       success: (html, status, xhr) ->
         previewArea.empty()
         previewArea.append(html)

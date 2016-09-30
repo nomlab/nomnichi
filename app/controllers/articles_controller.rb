@@ -48,6 +48,7 @@ class ArticlesController < ApplicationController
     @article.perma_link = User.current.ident + "-" + Time.now.to_s(:perma_link)
     @article.user_id = User.current.id
     @article.published_on = Time.now
+    @article.format = "GFM"
   end
 
   # GET /articles/1/edit
@@ -106,7 +107,7 @@ class ArticlesController < ApplicationController
     clear = "<div class='clear'></div>"
 
     render text: title + Kramdown::Document.new(article_params[:content],
-                                                input: "GFM",
+                                                input: article_params[:format],
                                                 syntax_highlighter: :rouge,
                                                 syntax_highlighter_opts: {css_class: 'highlight'}
                                                ).to_html + clear
@@ -157,7 +158,7 @@ class ArticlesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:user_id, :title, :perma_link, :content, :published_on, :approved, :count, :promote_headline)
+    params.require(:article).permit(:user_id, :title, :perma_link, :content, :published_on, :approved, :count, :promote_headline, :format)
   end
 
   #count up the number of view
