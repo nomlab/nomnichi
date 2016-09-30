@@ -1,3 +1,4 @@
+# coding: utf-8
 module ArticlesHelper
   def fold_article(content)
     if /<!-- folding -->/ =~ content then
@@ -53,6 +54,10 @@ module ArticlesHelper
       end
     end
     month_archives.select {|month| month[:item] != 0}
+  end
+
+  def tweet_button(title, author)
+    str = "<a href='https://twitter.com/share' class='twitter-share-button' data-url='#{request.url}' data-text='#{title} by #{author}  - ノムニチ'></a>".html_safe
   end
 
   private
