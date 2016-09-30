@@ -27,6 +27,7 @@ module ArticlesHelper
   end
 
   def list_year_archives(articles)
+    return [] if articles.empty?
     year_archives = []
     newest_year = articles.first.created_at.year
     oldest_year = articles.last.created_at.year
@@ -58,6 +59,10 @@ module ArticlesHelper
 
   def tweet_button(title, author)
     str = "<a href='https://twitter.com/share' class='twitter-share-button' data-url='#{request.url}' data-text='#{title} by #{author}  - ノムニチ'></a>".html_safe
+  end
+
+  def alert_no_articles(articles)
+    "<h1> no articles </h1>".html_safe if articles.length == 0
   end
 
   private
