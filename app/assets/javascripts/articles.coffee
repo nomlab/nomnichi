@@ -187,7 +187,9 @@ renderMarkdown = (text, update_element, linenum) ->
 setupRenderPreviewButton = (selector) ->
   $(selector).on 'click', (e) ->
     previewArea = $(".preview_area")
+    user_id = $('#article_user_id').val()
     title = $('#article_title').val()
+    perma_link = $('#article_perma_link').val()
     content = $('#article_content').val()
     format = $('#article_format').val()
     $. ajax
@@ -197,7 +199,9 @@ setupRenderPreviewButton = (selector) ->
       dataType:  "html"
       data:
         article:
+          user_id: user_id
           title: title
+          perma_link: perma_link
           content: content
           format: format
       success: (html, status, xhr) ->

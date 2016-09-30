@@ -4,7 +4,8 @@ class Article < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :title, presence: true
-  validates :perma_link, presence: true, uniqueness: true
+  validates :perma_link, presence: true, uniqueness: true, unless: proc { [:except_preview].include?(validation_context) }
+  validates :format, presence: true, inclusion: {in: ["Kramdown", "GFM"]}
 
   paginates_per 10
 

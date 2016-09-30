@@ -96,21 +96,25 @@ class ArticlesController < ApplicationController
   end
 
   def preview
-    title =
-      """
-      <div class='title-bar'>
-        <span class='title'>
-          #{article_params[:title]}
-        </span>
-      </div>
-      """
-    clear = "<div class='clear'></div>"
+    if Article.new(article_params).invalid?(:except_preview)
+      render text: "Bad request", status: 400
+    else
+      title =
+        """
+        <div class='title-bar'>
+          <span class='title'>
+            #{article_params[:title]}
+          </span>
+        </div>
+        """
+      clear = "<div class='clear'></div>"
 
-    render text: title + Kramdown::Document.new(article_params[:content],
-                                                input: article_params[:format],
-                                                syntax_highlighter: :rouge,
-                                                syntax_highlighter_opts: {css_class: 'highlight'}
-                                               ).to_html + clear
+      render text: title + Kramdown::Document.new(article_params[:content],
+                                                  input: article_params[:format],
+                                                  syntax_highlighter: :rouge,
+                                                  syntax_highlighter_opts: {css_class: 'highlight'}
+                                                 ).to_html + clear
+    end
 
   end
 
