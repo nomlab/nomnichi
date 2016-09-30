@@ -8,6 +8,7 @@
 </div>
 <div class="row row-offcanvas row-offcanvas-right">
   <div class="col-md-9 col-sm-8 articles">
+    <%= alert_no_articles(@articles) %>
     <%= render partial: "card", collection: @articles, as: :article %>
   </div>
   <div class="col-md-3 col-sm-4 sidebar-offcanvas" id="offcanvas-side-bar">
