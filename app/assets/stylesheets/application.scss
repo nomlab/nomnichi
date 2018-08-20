@@ -84,27 +84,36 @@ h3.title {
 
 .topimg{
   float: left;
+  margin-top: 15px;
   margin-right: 10px;
     img {
-      width: 80px !important;
-      max-width: 80px !important;
-      min-width: 80px !important;
+      width: 60px !important;
+      max-width: 60px !important;
+      min-width: 60px !important;
   }
 }
 
-.toptitle{
-  display: table-cell;
-  height: 113px;
-  vertical-align: middle;
+.toplogo{
+  margin-left: 10px;
+    img {
+      width: 268px !important;
+      max-width: 268px !important;
+      min-width: 268px !important;
+  }
+
 }
+
+.toptitle{
+  padding-left: 75px;
+  display: table-cell;
+  height: 60px;
+}
+
 
 .topbelong{
-    font-size: 20px;
+    font-size: 10px;
 }
 
-.topname{
-    font-size: 14px;
-}
 
 @media (min-width: $screen-xs-min) {
   .right{

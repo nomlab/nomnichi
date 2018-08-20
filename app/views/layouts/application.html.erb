@@ -4,7 +4,7 @@
     <title><%= yield(:title).present? ? yield(:title) : "乃村研究室 - 岡山大学工学部情報系学科" %></title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag('nomlab_fav.ico') %>
     <%= csrf_meta_tags %>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
     <link rel='alternate' type='application/rss+xml' title='RSS' href="<%= root_path + "nomnichi.rss" %>">
