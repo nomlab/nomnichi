@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.11'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '1.3.13'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -45,14 +45,14 @@ group :development do
   gem 'spring'
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '>= 3.4.1'
 gem 'kramdown'
 gem 'rouge', '~> 1.8'
-gem 'sanitize'
+gem 'sanitize', '>= 4.6.3'
 gem 'kaminari'
 
 # OmniAuth + github
-gem 'omniauth'
+gem 'omniauth', '>= 1.3.2'
 gem 'omniauth-github'
 gem "omniauth-github-team-member"
 
