@@ -46,7 +46,7 @@ group :development do
 end
 
 gem 'bootstrap-sass', '>= 3.4.1'
-gem 'kramdown'
+gem 'kramdown', '~> 1.0'
 gem 'rouge', '~> 1.8'
 gem 'sanitize', '>= 4.6.3'
 gem 'kaminari'

@@ -103,7 +103,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    kramdown (2.1.0)
+    kramdown (1.17.0)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -227,7 +227,7 @@ DEPENDENCIES
   jquery-rails
   jquery-treeview-rails!
   kaminari
-  kramdown
+  kramdown (~> 1.0)
   omniauth (>= 1.3.2)
   omniauth-github
   omniauth-github-team-member
@@ -243,4 +243,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.16.4
+   1.16.5
