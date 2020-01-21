@@ -1,0 +1,3 @@
+# This is nomnichi's environment file
+# Please change PATH to suit your environment.
+PATH=/home/nomlab/.rbenv/shims:/usr/bin:/bin
