@@ -15,10 +15,10 @@
    
 + コピーした`nomnichi.service`について，以下の項目を環境に合わせて設定する．
   ```
-  5 WorkingDirectory=/home/nomlab/nomnichi
-  6 ExecStart=/bin/sh -c 'exec /home/nomlab/nomnichi/exe/nomnichi >> /var/log/nomnichi.log 2>&1'
-  7 User=nomlab
-  8 Group=nomlab
+  10 WorkingDirectory=/home/nomlab/nomnichi
+  11 ExecStart=/bin/sh -c 'exec /home/nomlab/nomnichi/exe/nomnichi >> /var/log/nomnichi.log 2>&1'
+  12 User=nomlab
+  13 Group=nomlab
   ```
 
 + コピーした`nomnichi_env`について，PATHを環境に合わせて設定する．
