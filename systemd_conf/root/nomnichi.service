@@ -1,0 +1,17 @@
+[Unit]
+Description = Nomura Laboratory's Blog System
+# Show more detail in https://github.com/nomlab/nomnichi
+
+[Service]
+# Please change Working Directory and EnvironmentFile paths to suit your environment.
+WorkingDirectory=/home/nomlab/nomnichi
+EnvironmentFile=/etc/default/nomnichi_env
+
+ExecStart=/bin/sh -c 'exec /home/nomlab/nomnichi/bin/server.sh start pro >> /var/log/nomnichi.log 2>&1'
+User=nomlab
+Group=nomlab
+Type=forking
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
