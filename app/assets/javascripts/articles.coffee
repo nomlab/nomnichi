@@ -82,15 +82,17 @@ getPicasaAlbum = (user, album, authkey) ->
     return  0
 
 #
-# getPhotoList
+# getPhotoList from Pinatra
 #
-getPhotoList = (on_success_func) ->
-  top = "http://seiryu.swlab.cs.okayama-u.ac.jp:4567/photos"
+getPhotoList = (page_token, on_success_func) ->
+  # top = "http://localhost:4567/photos"
+  top = "http://pinatra.swlab.cs.okayama-u.ac.jp/photos"
   $.ajax
     url: top
     dataType: 'jsonp'
     jsonpCallback: 'pinatra_photo_list'
     data:
+      pageToken: page_token
       "start-index": 1
       "max-results": 3000
       thumbsize:     '128c'
@@ -99,6 +101,39 @@ getPhotoList = (on_success_func) ->
       imgmax:        800
     success: (json) ->
       on_success_func(json)
+
+#
+# append thumbnails to #photo box
+#
+appendPhotosToList = (page_token) ->
+  # append thumbnails
+  getPhotoList page_token, (photo_entries) ->
+    page_token = photo_entries.nextPageToken
+    $('#photo').append photo_entries.mediaItems.map (entry) ->
+      thumb = entry.thumb
+      """
+      <div class="thumb-box">
+        <a class="thumb-link" href="#{entry.src}" title="#{entry.title}" data-gallery>
+          <img class="thumb" src="#{thumb.url}" width="#{thumb.width}px" height="#{thumb.height}px" title="#{entry.title}" />
+        </a>
+        <i class="checkmark fa fa-check-circle"></i>
+      </div>
+      """
+    # append more photos button to thumbnail list
+    $('#photo').append """
+      <a class="next" href="#" title="Next">
+        <i class="fa fa-fw fa-arrow-right"></i>
+      </a>
+    """
+    $('#photo .next').on 'click', (ev) ->
+      appendPhotosToList(page_token)
+
+    # click photo checkmark to add marker
+    $('.checkmark').on 'click', (ev) ->
+      $(this).toggleClass('marked')
+      countMarkedPhotos("#photo", "#photo_inserter")
+      ev.preventDefault()
+
 #
 # count marked photos
 #
@@ -167,15 +202,16 @@ setupTabCallback = (write, preview) ->
     cur = $(e.target).attr('href')  # newly activated tab
     if $(cur).attr('id') == $(preview).attr('id')
       src = $(write).children('textarea').val()
-      renderMarkdown(src, $(cur))
+      title = $('#article_title').val()
+      renderMarkdown(src, title, $(cur))
     if $(cur).attr('id') == $(write).attr('id')
       $(write).children('textarea').focus()
 
 ################################################################
 ## Markdown
 
-renderMarkdown = (text, update_element, linenum) ->
-  $.post '/articles/preview', {text: text}, (data) ->
+renderMarkdown = (content, title, update_element, linenum) ->
+  $.post rootPath + 'articles/preview', {article: {title: title, content: content}}, (data) ->
     $(update_element).html(data)
     if linenum
       elem = $(update_element).find("[data-linenum='#{linenum}']")[0]
@@ -242,39 +278,24 @@ ready = ->
   #  ev.preventDefault()
 
   # Insert Photo panel
-  $('#photo').html('<span>Loading...</span>')
+  $('#photo').empty()
   # picasa = getPicasaAlbumCredentials().picasa
   # photo_entries = getPicasaAlbum(picasa.user, picasa.album, picasa.authkey)
-  getPhotoList (photo_entries) ->
-    $('#photo').html photo_entries.map (entry) ->
-      thumb = entry.thumb
-      """
-      <div class="thumb-box">
-        <a class="thumb-link" href="#{entry.src}" title="#{entry.title}" data-gallery>
-          <img class="thumb" src="#{thumb.url}" width="#{thumb.width}px" height="#{thumb.height}px" title="#{entry.title}" />
-        </a>
-        <i class="checkmark fa fa-check-circle"></i>
-      </div>
-      """
-    # click photo checkmark to add marker
-    $('.checkmark').on 'click', (ev) ->
-      $(this).toggleClass('marked')
-      countMarkedPhotos("#photo", "#photo_inserter")
-      ev.preventDefault()
 
+  appendPhotosToList()
 
-    # click inserter X button to clear selected marks
-    $('#photo_inserter .remove').on 'click', (ev) ->
-      clearMarkedPhotos("#photo", "#photo_inserter")
-      ev.preventDefault()
+  # click inserter X button to clear selected marks
+  $('#photo_inserter .remove').on 'click', (ev) ->
+    clearMarkedPhotos("#photo", "#photo_inserter")
+    ev.preventDefault()
 
-    # click inserter share button to send them to Write pane
-    $('#photo_inserter .share').on 'click', (ev) ->
-      insertMarkedPhotos("#photo")
-      clearMarkedPhotos("#photo", "#photo_inserter")
-      ev.preventDefault()
+  # click inserter share button to send them to Write pane
+  $('#photo_inserter .share').on 'click', (ev) ->
+    insertMarkedPhotos("#photo")
+    clearMarkedPhotos("#photo", "#photo_inserter")
+    ev.preventDefault()
 
-  setupRenderPreviewButton('#preview-tab')
+  # setupRenderPreviewButton('#preview-tab')
   setupTweetButton()
   $('.yearly').treeview(
     collapsed: true
