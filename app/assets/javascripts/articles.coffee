@@ -125,11 +125,11 @@ appendPhotosToList = (page_token) ->
         <i class="fa fa-fw fa-arrow-right"></i>
       </a>
     """
-    $('#photo .next').on 'click', (ev) ->
+    $('#photo .next').off().on 'click', (ev) ->
       appendPhotosToList(page_token)
 
     # click photo checkmark to add marker
-    $('.checkmark').on 'click', (ev) ->
+    $('.checkmark').off().on 'click', (ev) ->
       $(this).toggleClass('marked')
       countMarkedPhotos("#photo", "#photo_inserter")
       ev.preventDefault()
