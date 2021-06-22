@@ -59,7 +59,7 @@ gem "omniauth-github-team-member"
 # application settings
 gem "settingslogic"
 
-gem 'jquery-treeview-rails', github: 'ikeda-yuko/jquery-treeview-rails', branch: 'master'
+gem 'jquery-treeview-rails', github: 'nomlab/jquery-treeview-rails', branch: 'master'
 
 gem "font-awesome-rails"
 gem "Bootstrap-Image-Gallery-rails", github: "nomlab/Bootstrap-Image-Gallery-rails", branch: 'master'
