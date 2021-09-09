@@ -86,7 +86,7 @@ getPicasaAlbum = (user, album, authkey) ->
 #
 getPhotoList = (page_token, on_success_func) ->
   # top = "http://localhost:4567/photos"
-  top = "http://pinatra.swlab.cs.okayama-u.ac.jp/photos"
+  top = "https://pinatra.swlab.cs.okayama-u.ac.jp/photos"
   $.ajax
     url: top
     dataType: 'jsonp'
