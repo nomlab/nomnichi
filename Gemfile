@@ -55,6 +55,7 @@ gem 'kaminari'
 gem 'omniauth', '>= 1.3.2'
 gem 'omniauth-github'
 gem "omniauth-github-team-member"
+gem "omniauth-rails_csrf_protection"
 
 # application settings
 gem "settingslogic"
