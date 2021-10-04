@@ -55,11 +55,12 @@ gem 'kaminari'
 gem 'omniauth', '>= 1.3.2'
 gem 'omniauth-github'
 gem "omniauth-github-team-member"
+gem "omniauth-rails_csrf_protection"
 
 # application settings
 gem "settingslogic"
 
-gem 'jquery-treeview-rails', github: 'ikeda-yuko/jquery-treeview-rails', branch: 'master'
+gem 'jquery-treeview-rails', github: 'nomlab/jquery-treeview-rails', branch: 'master'
 
 gem "font-awesome-rails"
 gem "Bootstrap-Image-Gallery-rails", github: "nomlab/Bootstrap-Image-Gallery-rails", branch: 'master'
