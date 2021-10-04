@@ -52,10 +52,10 @@ gem 'sanitize', '>= 4.6.3'
 gem 'kaminari'
 
 # OmniAuth + github
-gem 'omniauth', '>= 1.3.2'
+gem 'omniauth', '~> 2.0'
 gem 'omniauth-github'
 gem "omniauth-github-team-member"
-gem "omniauth-rails_csrf_protection"
+gem "omniauth-rails_csrf_protection", '~>1.0'
 
 # application settings
 gem "settingslogic"
