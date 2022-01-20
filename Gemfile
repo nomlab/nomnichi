@@ -52,14 +52,15 @@ gem 'sanitize', '>= 4.6.3'
 gem 'kaminari'
 
 # OmniAuth + github
-gem 'omniauth', '>= 1.3.2'
+gem 'omniauth', '~> 2.0'
 gem 'omniauth-github'
 gem "omniauth-github-team-member"
+gem "omniauth-rails_csrf_protection", '~>1.0'
 
 # application settings
 gem "settingslogic"
 
-gem 'jquery-treeview-rails', github: 'ikeda-yuko/jquery-treeview-rails', branch: 'master'
+gem 'jquery-treeview-rails', github: 'nomlab/jquery-treeview-rails', branch: 'master'
 
 gem "font-awesome-rails"
 gem "Bootstrap-Image-Gallery-rails", github: "nomlab/Bootstrap-Image-Gallery-rails", branch: 'master'
