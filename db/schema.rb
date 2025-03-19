@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021042053) do
+ActiveRecord::Schema.define(version: 20160930052633) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151021042053) do
     t.boolean  "promote_headline"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "format"
   end
 
   add_index "articles", ["perma_link"], name: "index_articles_on_perma_link", unique: true
